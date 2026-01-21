@@ -1,0 +1,319 @@
+{% extends "base.html" %}
+
+{% block title %}RSVP | Sodienye & Ayoade{% endblock %}
+
+{% block content %}
+<!-- RSVP Section -->
+<section class="rsvp-page">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">RSVP</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">We can't wait to celebrate with you</p>
+        </div>
+        
+        <div class="rsvp-content">
+            {% if submitted %}
+                <!-- Confirmation Page -->
+                <div class="rsvp-confirmation">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    
+                    <h3 class="confirmation-title">Thank You, {{ form_data.name }}!</h3>
+                    
+                    <p class="confirmation-message">
+                        We have received your RSVP. Please confirm your attendance by sending us a message via WhatsApp or Email:
+                    </p>
+                    
+                    <div class="rsvp-actions">
+                        <a href="{{ whatsapp_url }}" target="_blank" class="btn btn-primary btn-large">
+                            <i class="fab fa-whatsapp"></i>
+                            Send WhatsApp Message
+                        </a>
+                        
+                        <a href="{{ email_url }}" class="btn btn-secondary btn-large">
+                            <i class="fas fa-envelope"></i>
+                            Send Email
+                        </a>
+                    </div>
+                    
+                    <div class="rsvp-summary">
+                        <h4>Your RSVP Summary</h4>
+                        <div class="summary-item">
+                            <strong>Name:</strong> {{ form_data.name }}
+                        </div>
+                        <div class="summary-item">
+                            <strong>Email:</strong> {{ form_data.email }}
+                        </div>
+                        <div class="summary-item">
+                            <strong>Phone:</strong> {{ form_data.phone }}
+                        </div>
+                        <div class="summary-item">
+                            <strong>Attending:</strong> {{ form_data.attending }}
+                        </div>
+                        {% if form_data.guests != '0' %}
+                        <div class="summary-item">
+                            <strong>Number of Guests:</strong> {{ form_data.guests }}
+                        </div>
+                        {% endif %}
+                        {% if form_data.message %}
+                        <div class="summary-item">
+                            <strong>Message:</strong> {{ form_data.message }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="rsvp-note">
+                        <p><i class="fas fa-heart"></i> We are truly grateful for your love and support</p>
+                    </div>
+                </div>
+            {% else %}
+                <!-- RSVP Form -->
+                <div class="rsvp-card">
+                    <div class="rsvp-icon">
+                        <i class="fas fa-envelope-open"></i>
+                    </div>
+                    
+                    <h3 class="rsvp-title">Will You Join Us?</h3>
+                    
+                    <p class="rsvp-description">
+                        Your presence would make our celebration complete. Please fill out the form below to let us know if you'll be joining us for our special day.
+                    </p>
+                    
+                    <form method="POST" action="{{ url_for('rsvp') }}" class="rsvp-form">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="Enter your email">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Will you be attending? *</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="attending" value="Yes, I will be there!" required>
+                                    <span>Yes, I will be there!</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="attending" value="Sorry, I can't make it" required>
+                                    <span>Sorry, I can't make it</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="attending" value="Not sure yet" required>
+                                    <span>Not sure yet</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guests">Number of Guests</label>
+                            <select id="guests" name="guests">
+                                <option value="0">Just me</option>
+                                <option value="1">1 Guest</option>
+                                <option value="2">2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5+">5+ Guests</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message (Optional)</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Share your well wishes or any special notes..."></textarea>
+                        </div>
+                        
+                        <div class="event-details">
+                            <div class="event-detail">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>March 7, 2026</span>
+                            </div>
+                            <div class="event-detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Port Harcourt, Nigeria</span>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-check-circle"></i>
+                            Submit RSVP
+                        </button>
+                    </form>
+                    
+                    <div class="rsvp-note">
+                        <p><i class="fas fa-heart"></i> We are truly grateful for your love and support</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.rsvp-form {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--light-gray);
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--soft-gold);
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.radio-label input[type="radio"] {
+    width: auto;
+    margin: 0;
+}
+
+.rsvp-card .event-details {
+    background: var(--cream);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.rsvp-card .event-detail {
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.rsvp-card .event-detail:last-child {
+    margin-bottom: 0;
+}
+
+.rsvp-confirmation {
+    background: var(--white);
+    padding: 50px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+}
+
+.confirmation-icon {
+    font-size: 4rem;
+    color: var(--soft-gold);
+    margin-bottom: 25px;
+}
+
+.confirmation-title {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+}
+
+.confirmation-message {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    color: var(--warm-gray);
+}
+
+.rsvp-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.rsvp-summary {
+    background: var(--cream);
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.rsvp-summary h4 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.summary-item {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .rsvp-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .rsvp-confirmation,
+    .rsvp-card {
+        padding: 30px 20px;
+    }
+}
+</style>
+{% endblock %}
