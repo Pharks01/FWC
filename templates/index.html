@@ -27,20 +27,15 @@
         {% endif %}
     </div>
     
-    <div class="hero-overlay">
-        <div class="hero-content">
-            <h1 class="couple-names butterfly-text">
-                <span class="bride-name">Sodienye</span>
-                <span class="amp">&</span>
-                <span class="groom-name">Ayoade</span>
-            </h1>
-        </div>
-    </div>
-    
     <!-- Hero Info Card -->
     <div class="hero-info-section">
         <div class="container">
             <div class="hero-info-card">
+                <h1 class="butterfly-text">
+                    <span class="bride-name">Sodienye</span>
+                    <span class="amp">&</span>
+                    <span class="groom-name">Ayoade</span>
+                </h1>
                 <div class="hero-tagline">Forever We Cleave</div>
                 <div class="hero-date">March 7, 2026 • Port Harcourt, Nigeria</div>
                 
@@ -49,11 +44,11 @@
                         <i class="fas fa-clipboard-list"></i>
                         RSVP
                     </a>
-                    <a href="{{ url_for('asoebi') }}" class="btn btn-secondary">
+                    <a href="{{ url_for('asoebi') }}" class="btn btn-primary">
                         <i class="fas fa-female"></i>
                         Aso-Ebi
                     </a>
-                    <a href="{{ url_for('registry') }}" class="btn btn-secondary">
+                    <a href="{{ url_for('registry') }}" class="btn btn-primary">
                         <i class="fas fa-gift"></i>
                         Gift the Couple
                     </a>
@@ -66,8 +61,7 @@
 <!-- Countdown Section -->
 <section class="countdown-section">
     <div class="container">
-        <div class="countdown-card thunderstorm">
-            <div class="lightning"></div>
+        <div class="countdown-card">
             <h3 class="countdown-title">Counting Down to Forever</h3>
             <p class="countdown-subtitle">Traditional Wedding • March 7, 2026</p>
             
@@ -302,6 +296,15 @@
                         <p>Details to be announced</p>
                         <p class="placeholder-subtitle">Check back for updates</p>
                     </div>
+                </div>
+                {% endif %}
+                
+                {% if data.white_wedding.rsvp_link and data.white_wedding.rsvp_link != '#' %}
+                <div class="event-rsvp">
+                    <a href="{{ data.white_wedding.rsvp_link }}" target="_blank" class="btn btn-outline">
+                        <i class="fas fa-clipboard-list"></i>
+                        RSVP for White Wedding
+                    </a>
                 </div>
                 {% endif %}
             </div>

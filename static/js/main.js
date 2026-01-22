@@ -29,7 +29,7 @@ function initNavigation() {
     });
 }
 
-// Enhanced Slideshow functionality with smart orientation, blur backgrounds, and audio controls
+// Enhanced Slideshow functionality with smart orientation and blur backgrounds - NO SOUND
 function initEnhancedSlideshows() {
     const slideshows = document.querySelectorAll('.hero-slideshow, .proposal-slideshow, .gallery-slideshow');
     
@@ -48,7 +48,6 @@ function createSmartSlideshow(container, slides) {
     let isTransitioning = false;
     let slideTimeouts = [];
     let currentVideo = null;
-    let isMuted = false; // Start with sound enabled by default
     let blurVideo = null; // Track blur video for sync
     
     // Create slideshow structure
@@ -90,50 +89,6 @@ function createSmartSlideshow(container, slides) {
     });
     
     container.appendChild(navContainer);
-    
-    // Create audio control button (moved to bottom right)
-    const audioControl = document.createElement('button');
-    audioControl.className = 'audio-control';
-    audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
-    audioControl.title = 'Toggle Sound';
-    audioControl.style.cssText = `
-        position: absolute;
-        bottom: 70px;
-        right: 20px;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background: rgba(0, 0, 0, 0.7);
-        border: 2px solid rgba(255, 255, 255, 0.9);
-        color: var(--white);
-        cursor: pointer;
-        z-index: 11;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(4px);
-    `;
-    audioControl.addEventListener('click', () => {
-        isMuted = !isMuted;
-        updateAudioControl();
-        if (currentVideo) {
-            currentVideo.muted = isMuted;
-        }
-        if (blurVideo) {
-            blurVideo.muted = true; // Blur video should always be muted
-        }
-    });
-    container.appendChild(audioControl);
-    
-    function updateAudioControl() {
-        if (isMuted) {
-            audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
-        } else {
-            audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
-        }
-    }
     
     // Function to detect orientation and aspect ratio
     function getSlideInfo(slide) {
@@ -290,13 +245,13 @@ function createSmartSlideshow(container, slides) {
                 });
             }
             
-            // Handle video sizing with sound enabled by default
+            // Handle video sizing - ALL VIDEOS MUTED, NO SOUND
             if (video) {
                 video.style.maxWidth = '100%';
                 video.style.maxHeight = '100%';
                 video.style.objectFit = 'contain';
                 video.style.objectPosition = 'center';
-                video.muted = isMuted; // Use global mute state
+                video.muted = true; // ALL VIDEOS MUTED - NO SOUND
                 video.playsInline = true;
                 
                 // Update when video metadata loads
@@ -381,11 +336,11 @@ function createSmartSlideshow(container, slides) {
         // Update container height
         updateContainerHeight();
         
-        // Handle video playback
+        // Handle video playback - ALL VIDEOS MUTED
         const video = newSlide.querySelector('video');
         if (video) {
             currentVideo = video;
-            video.muted = isMuted; // Apply current mute state
+            video.muted = true; // ALL VIDEOS MUTED - NO SOUND
             video.play().catch(e => {
                 console.log('Autoplay prevented, waiting for user interaction');
             });

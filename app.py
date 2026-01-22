@@ -36,7 +36,8 @@ def load_data():
             'venue': 'TBD',
             'address': 'Details to be announced',
             'location': 'Location TBD',
-            'map_embed': ''
+            'map_embed': '',
+            'rsvp_link': '#'
         },
         'rsvp_link': '#',
         'contact': {
@@ -189,6 +190,7 @@ Warm regards,
         email_url = f"mailto:foreverwecleave@gmail.com?subject={email_subject}&body={email_body}"
         
         return render_template('rsvp.html', 
+                             data=data,
                              rsvp_link=data.get('rsvp_link', '#'),
                              whatsapp_url=whatsapp_url,
                              email_url=email_url,
@@ -202,7 +204,7 @@ Warm regards,
                                  'message': message
                              })
     
-    return render_template('rsvp.html', rsvp_link=data.get('rsvp_link', '#'), submitted=False)
+    return render_template('rsvp.html', data=data, rsvp_link=data.get('rsvp_link', '#'), submitted=False)
 
 @app.route('/admin')
 def admin():
@@ -220,7 +222,8 @@ def admin_update():
         'venue': request.form.get('white_wedding_venue', 'TBD'),
         'address': request.form.get('white_wedding_address', 'Details to be announced'),
         'location': request.form.get('white_wedding_location', 'Location TBD'),
-        'map_embed': request.form.get('white_wedding_map', '')
+        'map_embed': request.form.get('white_wedding_map', ''),
+        'rsvp_link': request.form.get('white_wedding_rsvp_link', '#')
     }
     
     # Update contact info
