@@ -12,24 +12,6 @@
         </div>
         
         <div class="registry-content">
-            <div class="gratitude-note">
-                <div class="note-icon">
-                    <i class="fas fa-heart"></i>
-                </div>
-                
-                <h3 class="note-title">A Note of Gratitude</h3>
-                
-                <div class="note-text">
-                    <p>Your love, prayers, and presence on our special day mean more to us than words can express. We are truly grateful to share this moment with family and friends who have supported and celebrated us along the way.</p>
-                    
-                    <p>For those who wish to honor us with a gift, we have created a registry and provided secure options for cash gifts to help us begin this new chapter together.</p>
-                    
-                    <p>Thank you for your kindness, generosity, and thoughtfulness.</p>
-                </div>
-                
-                <div class="signature">— Sodienye & Ayoade</div>
-            </div>
-            
             <div class="registry-options">
                 <!-- Amazon Registry -->
                 <div class="registry-card">
@@ -50,12 +32,16 @@
                         <i class="fas fa-envelope-open-text"></i>
                     </div>
                     <h4 class="registry-title">Cash Gifts</h4>
-                    <p class="registry-description">Your presence at our wedding is the greatest gift of all. However, for family and friends who wish to bless us with a cash gift as we begin our journey together, we have provided secure options below for your convenience.</p>
+                    <p class="registry-description">Your presence at our wedding is the greatest gift of all. However, for family and friends who wish to bless us with a cash gift as we begin our journey together, we have provided secure options for your convenience.</p>
+                    <button class="btn btn-secondary" onclick="showCashGiftOptions()">
+                        <i class="fas fa-money-bill-wave"></i>
+                        Cash Gift Details
+                    </button>
                 </div>
             </div>
             
-            <!-- Cash Gift Options -->
-            <div class="cash-gift-section">
+            <!-- Cash Gift Options (Hidden by default) -->
+            <div class="cash-gift-section" id="cashGiftOptions" style="display: none;">
                 <h3 class="cash-gift-title"><i class="fas fa-gift"></i> Cash Gift Options</h3>
                 <p class="cash-gift-subtitle">Please select the option that best suits your location.</p>
                 
@@ -189,20 +175,41 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Note of Gratitude (Moved below) -->
+            <div class="gratitude-note">
+                <div class="note-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                
+                <h3 class="note-title">A Note of Gratitude</h3>
+                
+                <div class="note-text">
+                    <p>Your love, prayers, and presence on our special day mean more to us than words can express. We are truly grateful to share this moment with family and friends who have supported and celebrated us along the way.</p>
+                    
+                    <p>For those who wish to honor us with a gift, we have created a registry and provided secure options for cash gifts to help us begin this new chapter together.</p>
+                    
+                    <p>Thank you for your kindness, generosity, and thoughtfulness.</p>
+                </div>
+                
+                <div class="signature">— Sodienye & Ayoade</div>
+            </div>
         </div>
     </div>
 </section>
 
 <style>
 .cash-gift-section {
-    margin-top: 60px;
-    padding-top: 60px;
-    border-top: 1px solid var(--light-gray);
+    margin-top: 50px;
+    padding: 40px;
+    background: var(--cream);
+    border-radius: 8px;
+    display: none;
 }
 
 .cash-gift-title {
     font-family: var(--font-serif);
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--charcoal);
     text-align: center;
     margin-bottom: 10px;
@@ -216,49 +223,49 @@
 .cash-gift-subtitle {
     text-align: center;
     color: var(--warm-gray);
-    margin-bottom: 40px;
-    font-size: 1.1rem;
+    margin-bottom: 30px;
+    font-size: 1rem;
 }
 
 .bank-options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
 }
 
 .bank-card {
     background: var(--white);
-    padding: 30px;
+    padding: 25px;
     border-radius: 8px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     border-left: 4px solid var(--soft-gold);
 }
 
 .bank-header {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
+    gap: 12px;
+    margin-bottom: 20px;
 }
 
 .country-flag {
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .bank-header h4 {
     font-family: var(--font-serif);
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: var(--charcoal);
     margin: 0;
 }
 
 .bank-details {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .detail-row {
     display: flex;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     align-items: flex-start;
 }
 
@@ -269,39 +276,42 @@
 .detail-row .label {
     font-weight: 600;
     color: var(--charcoal);
-    min-width: 140px;
+    min-width: 130px;
     flex-shrink: 0;
+    font-size: 0.9rem;
 }
 
 .detail-row .value {
     color: var(--warm-gray);
     word-break: break-all;
+    font-size: 0.9rem;
 }
 
 .detail-row.full-width .value {
     margin-top: 5px;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 .copyable {
-    background: var(--cream);
+    background: var(--white);
     padding: 2px 8px;
     border-radius: 4px;
     font-family: monospace;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    border: 1px solid var(--light-gray);
 }
 
 .copy-btn {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 20px;
+    padding: 10px 18px;
     background: var(--soft-gold);
     color: var(--white);
     border: none;
     border-radius: 4px;
     font-family: var(--font-sans);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -318,6 +328,43 @@
     background: #22C55E;
 }
 
+.gratitude-note {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.gratitude-note .note-icon {
+    font-size: 3rem;
+    color: var(--soft-gold);
+    margin-bottom: 20px;
+}
+
+.gratitude-note .note-title {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--charcoal);
+    margin-bottom: 25px;
+}
+
+.gratitude-note .note-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: var(--warm-gray);
+}
+
+.gratitude-note .signature {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--charcoal);
+    margin-top: 25px;
+}
+
 @media (max-width: 768px) {
     .bank-options {
         grid-template-columns: 1fr;
@@ -329,16 +376,31 @@
     
     .detail-row .label {
         min-width: auto;
-        margin-bottom: 5px;
+        margin-bottom: 2px;
     }
     
     .bank-card {
         padding: 20px;
     }
+    
+    .cash-gift-section {
+        padding: 25px;
+    }
 }
 </style>
 
 <script>
+function showCashGiftOptions() {
+    const cashGiftSection = document.getElementById('cashGiftOptions');
+    if (cashGiftSection.style.display === 'none') {
+        cashGiftSection.style.display = 'block';
+        // Smooth scroll to the section
+        cashGiftSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else {
+        cashGiftSection.style.display = 'none';
+    }
+}
+
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(function() {
         // Show success feedback

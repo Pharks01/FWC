@@ -37,16 +37,27 @@
         </div>
     </div>
     
-    <!-- Hero Info Section -->
-    <div class="hero-info">
+    <!-- Hero Info Card -->
+    <div class="hero-info-section">
         <div class="container">
-            <div class="hero-tagline">Forever We Cleave</div>
-            <div class="hero-date">March 7, 2026 • Port Harcourt, Nigeria</div>
-            
-            <div class="hero-buttons">
-                <a href="{{ url_for('rsvp') }}" class="btn btn-primary">RSVP</a>
-                <a href="{{ url_for('asoebi') }}" class="btn btn-secondary">Aso-Ebi</a>
-                <a href="{{ url_for('registry') }}" class="btn btn-secondary">Gift the Couple</a>
+            <div class="hero-info-card">
+                <div class="hero-tagline">Forever We Cleave</div>
+                <div class="hero-date">March 7, 2026 • Port Harcourt, Nigeria</div>
+                
+                <div class="hero-buttons">
+                    <a href="{{ url_for('rsvp') }}" class="btn btn-primary">
+                        <i class="fas fa-clipboard-list"></i>
+                        RSVP
+                    </a>
+                    <a href="{{ url_for('asoebi') }}" class="btn btn-secondary">
+                        <i class="fas fa-female"></i>
+                        Aso-Ebi
+                    </a>
+                    <a href="{{ url_for('registry') }}" class="btn btn-secondary">
+                        <i class="fas fa-gift"></i>
+                        Gift the Couple
+                    </a>
+                </div>
             </div>
         </div>
     </div>

@@ -285,16 +285,16 @@ section {
     transform: scale(1.2);
 }
 
-/* Audio Control Button */
+/* Audio Control Button - Positioned at bottom right */
 .audio-control {
     position: absolute;
-    top: 20px;
+    bottom: 70px;
     right: 20px;
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.6);
-    border: 2px solid rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.9);
     color: var(--white);
     cursor: pointer;
     z-index: 11;
@@ -479,33 +479,82 @@ section {
     opacity: 0.3;
 }
 
-/* Hero Info Section */
-.hero-info {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
-    color: var(--white);
+/* Hero Info Card Section */
+.hero-info-section {
+    background: linear-gradient(135deg, var(--ivory) 0%, var(--cream) 100%);
     padding: 60px 0;
-    text-align: center;
 }
 
-.hero-info .hero-tagline {
+.hero-info-card {
+    background: var(--white);
+    padding: 50px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    max-width: 700px;
+    margin: 0 auto;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.hero-info-card .hero-tagline {
     font-family: var(--font-serif);
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-style: italic;
     margin-bottom: 15px;
     color: var(--soft-gold);
+    letter-spacing: 0.02em;
 }
 
-.hero-info .hero-date {
-    font-size: 1.2rem;
+.hero-info-card .hero-date {
+    font-size: 1.1rem;
     margin-bottom: 40px;
-    color: var(--cream);
+    color: var(--warm-gray);
+    font-weight: 500;
 }
 
-.hero-info .hero-buttons {
+.hero-info-card .hero-buttons {
     display: flex;
     gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.hero-info-card .hero-buttons .btn {
+    padding: 16px 32px;
+    font-size: 0.9rem;
+}
+
+.hero-info-card .hero-buttons .btn i {
+    margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+    .hero-info-section {
+        padding: 40px 0;
+    }
+    
+    .hero-info-card {
+        padding: 35px 25px;
+        margin: 0 20px;
+    }
+    
+    .hero-info-card .hero-tagline {
+        font-size: 1.8rem;
+    }
+    
+    .hero-info-card .hero-date {
+        font-size: 1rem;
+    }
+    
+    .hero-info-card .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-info-card .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+    }
 }
 
 /* Butterfly Text Animation */
@@ -557,98 +606,145 @@ section {
     }
 }
 
-/* Thunderstorm Countdown Effect */
+/* Elegant Countdown Section */
 .countdown-section {
-    background: var(--cream);
-    padding: 60px 0;
+    background: var(--ivory);
+    padding: 80px 0;
 }
 
-.countdown-card.thunderstorm {
-    background: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #2C3E50 100%);
-    color: var(--white);
+.countdown-card {
+    background: var(--white);
+    padding: 60px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+    max-width: 800px;
+    margin: 0 auto;
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(212, 175, 55, 0.15);
 }
 
-.lightning {
+.countdown-card::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background: radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
-    animation: lightning 4s infinite;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--soft-gold), transparent);
 }
 
-@keyframes lightning {
-    0%, 90%, 100% {
-        opacity: 0;
-        transform: scale(1);
-    }
-    91% {
-        opacity: 1;
-        transform: scale(1.1);
-        background: radial-gradient(ellipse at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 30%, transparent 60%);
-    }
-    92% {
-        opacity: 0.3;
-    }
-    93% {
-        opacity: 1;
-        background: radial-gradient(ellipse at center, rgba(212,175,55,0.6) 0%, rgba(255,255,255,0.3) 40%, transparent 70%);
-    }
-    94% {
-        opacity: 0;
-    }
-    95% {
-        opacity: 0.8;
-        background: radial-gradient(ellipse at center, rgba(255,255,255,0.6) 0%, transparent 50%);
-    }
-    96% {
-        opacity: 0;
-    }
+.countdown-title {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    color: var(--charcoal);
+    margin-bottom: 12px;
 }
 
-.countdown-card.thunderstorm .countdown-title {
-    color: var(--white);
-    text-shadow: 0 0 20px rgba(212,175,55,0.5);
+.countdown-subtitle {
+    color: var(--warm-gray);
+    margin-bottom: 50px;
+    font-size: 1.1rem;
+    font-style: italic;
 }
 
-.countdown-card.thunderstorm .countdown-subtitle {
-    color: rgba(255,255,255,0.8);
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
 }
 
-.countdown-card.thunderstorm .countdown-number {
-    color: var(--soft-gold);
-    text-shadow: 0 0 15px rgba(212,175,55,0.7);
-}
-
-.countdown-card.thunderstorm .countdown-label {
-    color: rgba(255,255,255,0.9);
-}
-
-.countdown-card.thunderstorm .countdown-separator {
-    color: var(--soft-gold);
-    text-shadow: 0 0 10px rgba(212,175,55,0.5);
-}
-
-/* Enhanced Countdown Animation */
 .countdown-item {
-    animation: countdownPulse 2s ease-in-out infinite;
+    text-align: center;
+    position: relative;
 }
 
-.countdown-item:nth-child(1) { animation-delay: 0s; }
-.countdown-item:nth-child(3) { animation-delay: 0.5s; }
-.countdown-item:nth-child(5) { animation-delay: 1s; }
-.countdown-item:nth-child(7) { animation-delay: 1.5s; }
+.countdown-number {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 3.8rem;
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1;
+    margin-bottom: 8px;
+}
 
-@keyframes countdownPulse {
+.countdown-label {
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+}
+
+.countdown-separator {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    color: var(--soft-gold);
+    line-height: 1;
+    animation: separatorGlow 2s ease-in-out infinite;
+}
+
+@keyframes separatorGlow {
     0%, 100% {
+        opacity: 0.6;
         transform: scale(1);
     }
     50% {
-        transform: scale(1.05);
+        opacity: 1;
+        transform: scale(1.1);
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    }
+}
+
+/* Elegant shimmer effect on numbers */
+.countdown-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent);
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.countdown-item:nth-child(1)::before { animation-delay: 0s; }
+.countdown-item:nth-child(3)::before { animation-delay: 0.5s; }
+.countdown-item:nth-child(5)::before { animation-delay: 1s; }
+.countdown-item:nth-child(7)::before { animation-delay: 1.5s; }
+
+@media (max-width: 768px) {
+    .countdown-card {
+        padding: 40px 25px;
+    }
+    
+    .countdown-title {
+        font-size: 1.8rem;
+    }
+    
+    .countdown-timer {
+        gap: 15px;
+    }
+    
+    .countdown-number {
+        font-size: 2.8rem;
+    }
+    
+    .countdown-separator {
+        font-size: 1.8rem;
     }
 }
 

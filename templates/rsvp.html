@@ -13,155 +13,43 @@
         </div>
         
         <div class="rsvp-content">
-            {% if submitted %}
-                <!-- Confirmation Page -->
-                <div class="rsvp-confirmation">
-                    <div class="confirmation-icon">
-                        <i class="fas fa-check-circle"></i>
+            <div class="rsvp-card">
+                <div class="rsvp-icon">
+                    <i class="fas fa-envelope-open"></i>
+                </div>
+                
+                <h3 class="rsvp-title">Will You Join Us?</h3>
+                
+                <p class="rsvp-description">
+                    Your presence would make our celebration complete. Please let us know if you'll be joining us for our special day.
+                </p>
+                
+                <div class="event-details">
+                    <div class="event-detail">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>March 7, 2026</span>
                     </div>
-                    
-                    <h3 class="confirmation-title">Thank You, {{ form_data.name }}!</h3>
-                    
-                    <p class="confirmation-message">
-                        We have received your RSVP. Please confirm your attendance by sending us a message via WhatsApp or Email:
-                    </p>
-                    
-                    <div class="rsvp-actions">
-                        <a href="{{ whatsapp_url }}" target="_blank" class="btn btn-primary btn-large">
-                            <i class="fab fa-whatsapp"></i>
-                            Send WhatsApp Message
-                        </a>
-                        
-                        <a href="{{ email_url }}" class="btn btn-secondary btn-large">
-                            <i class="fas fa-envelope"></i>
-                            Send Email
-                        </a>
-                    </div>
-                    
-                    <div class="rsvp-summary">
-                        <h4>Your RSVP Summary</h4>
-                        <div class="summary-item">
-                            <strong>Name:</strong> {{ form_data.name }}
-                        </div>
-                        <div class="summary-item">
-                            <strong>Email:</strong> {{ form_data.email }}
-                        </div>
-                        <div class="summary-item">
-                            <strong>Phone:</strong> {{ form_data.phone }}
-                        </div>
-                        <div class="summary-item">
-                            <strong>Attending:</strong> {{ form_data.attending }}
-                        </div>
-                        {% if form_data.guests != '0' %}
-                        <div class="summary-item">
-                            <strong>Number of Guests:</strong> {{ form_data.guests }}
-                        </div>
-                        {% endif %}
-                        {% if form_data.message %}
-                        <div class="summary-item">
-                            <strong>Message:</strong> {{ form_data.message }}
-                        </div>
-                        {% endif %}
-                    </div>
-                    
-                    <div class="rsvp-note">
-                        <p><i class="fas fa-heart"></i> We are truly grateful for your love and support</p>
+                    <div class="event-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Port Harcourt, Nigeria</span>
                     </div>
                 </div>
-            {% else %}
-                <!-- RSVP Form -->
-                <div class="rsvp-card">
-                    <div class="rsvp-icon">
-                        <i class="fas fa-envelope-open"></i>
-                    </div>
-                    
-                    <h3 class="rsvp-title">Will You Join Us?</h3>
-                    
-                    <p class="rsvp-description">
-                        Your presence would make our celebration complete. Please fill out the form below to let us know if you'll be joining us for our special day.
-                    </p>
-                    
-                    <form method="POST" action="{{ url_for('rsvp') }}" class="rsvp-form">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" required placeholder="Enter your email">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="phone">Phone Number *</label>
-                                <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Will you be attending? *</label>
-                            <div class="radio-group">
-                                <label class="radio-label">
-                                    <input type="radio" name="attending" value="Yes, I will be there!" required>
-                                    <span>Yes, I will be there!</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="attending" value="Sorry, I can't make it" required>
-                                    <span>Sorry, I can't make it</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="attending" value="Not sure yet" required>
-                                    <span>Not sure yet</span>
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="guests">Number of Guests</label>
-                            <select id="guests" name="guests">
-                                <option value="0">Just me</option>
-                                <option value="1">1 Guest</option>
-                                <option value="2">2 Guests</option>
-                                <option value="3">3 Guests</option>
-                                <option value="4">4 Guests</option>
-                                <option value="5+">5+ Guests</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message (Optional)</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Share your well wishes or any special notes..."></textarea>
-                        </div>
-                        
-                        <div class="event-details">
-                            <div class="event-detail">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>March 7, 2026</span>
-                            </div>
-                            <div class="event-detail">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Port Harcourt, Nigeria</span>
-                            </div>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary btn-large">
-                            <i class="fas fa-check-circle"></i>
-                            Submit RSVP
-                        </button>
-                    </form>
-                    
-                    <div class="rsvp-note">
-                        <p><i class="fas fa-heart"></i> We are truly grateful for your love and support</p>
-                    </div>
+                
+                <div class="rsvp-action">
+                    <a href="https://forms.gle/8Zb7VNBzrjdWeUih7" target="_blank" class="btn btn-primary btn-large">
+                        <i class="fas fa-clipboard-list"></i>
+                        Confirm Your Attendance
+                    </a>
                 </div>
-            {% endif %}
+                
+                <div class="rsvp-note">
+                    <p><i class="fas fa-heart"></i> We are truly grateful for your love and support</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
-{% endblock %}
 
-{% block extra_css %}
 <style>
 .rsvp-form {
     text-align: left;

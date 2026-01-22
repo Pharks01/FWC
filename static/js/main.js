@@ -48,7 +48,8 @@ function createSmartSlideshow(container, slides) {
     let isTransitioning = false;
     let slideTimeouts = [];
     let currentVideo = null;
-    let isMuted = true; // Start muted by default
+    let isMuted = false; // Start with sound enabled by default
+    let blurVideo = null; // Track blur video for sync
     
     // Create slideshow structure
     const slideshowInner = document.createElement('div');
@@ -90,16 +91,38 @@ function createSmartSlideshow(container, slides) {
     
     container.appendChild(navContainer);
     
-    // Create audio control button
+    // Create audio control button (moved to bottom right)
     const audioControl = document.createElement('button');
     audioControl.className = 'audio-control';
-    audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
     audioControl.title = 'Toggle Sound';
+    audioControl.style.cssText = `
+        position: absolute;
+        bottom: 70px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.7);
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        color: var(--white);
+        cursor: pointer;
+        z-index: 11;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(4px);
+    `;
     audioControl.addEventListener('click', () => {
         isMuted = !isMuted;
         updateAudioControl();
         if (currentVideo) {
             currentVideo.muted = isMuted;
+        }
+        if (blurVideo) {
+            blurVideo.muted = true; // Blur video should always be muted
         }
     });
     container.appendChild(audioControl);
@@ -177,7 +200,7 @@ function createSmartSlideshow(container, slides) {
                 blurBg.appendChild(blurImg);
             } else if (slideInfo.type === 'video') {
                 // Create a blurred version of the same video
-                const blurVideo = document.createElement('video');
+                blurVideo = document.createElement('video');
                 blurVideo.src = mediaElement.src;
                 blurVideo.muted = true;
                 blurVideo.loop = true;
@@ -195,11 +218,18 @@ function createSmartSlideshow(container, slides) {
                 blurBg.appendChild(blurVideo);
                 
                 // Sync blur video with main video
+                const syncVideos = () => {
+                    if (blurVideo && mediaElement) {
+                        blurVideo.currentTime = mediaElement.currentTime;
+                    }
+                };
+                
+                mediaElement.addEventListener('timeupdate', syncVideos);
                 mediaElement.addEventListener('play', () => {
-                    blurVideo.play();
+                    if (blurVideo) blurVideo.play();
                 });
                 mediaElement.addEventListener('pause', () => {
-                    blurVideo.pause();
+                    if (blurVideo) blurVideo.pause();
                 });
             }
             
@@ -273,6 +303,12 @@ function createSmartSlideshow(container, slides) {
                 video.addEventListener('loadedmetadata', () => {
                     updateContainerHeight();
                     createBlurBackground(slide, video);
+                });
+                
+                // Handle video errors
+                video.addEventListener('error', () => {
+                    console.log('Video error, treating as landscape');
+                    updateContainerHeight();
                 });
             }
         });
