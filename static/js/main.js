@@ -29,7 +29,7 @@ function initNavigation() {
     });
 }
 
-// Enhanced Slideshow functionality with smart orientation and blur background
+// Enhanced Slideshow functionality with smart orientation, blur backgrounds, and audio controls
 function initEnhancedSlideshows() {
     const slideshows = document.querySelectorAll('.hero-slideshow, .proposal-slideshow, .gallery-slideshow');
     
@@ -48,6 +48,7 @@ function createSmartSlideshow(container, slides) {
     let isTransitioning = false;
     let slideTimeouts = [];
     let currentVideo = null;
+    let isMuted = true; // Start muted by default
     
     // Create slideshow structure
     const slideshowInner = document.createElement('div');
@@ -89,6 +90,28 @@ function createSmartSlideshow(container, slides) {
     
     container.appendChild(navContainer);
     
+    // Create audio control button
+    const audioControl = document.createElement('button');
+    audioControl.className = 'audio-control';
+    audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    audioControl.title = 'Toggle Sound';
+    audioControl.addEventListener('click', () => {
+        isMuted = !isMuted;
+        updateAudioControl();
+        if (currentVideo) {
+            currentVideo.muted = isMuted;
+        }
+    });
+    container.appendChild(audioControl);
+    
+    function updateAudioControl() {
+        if (isMuted) {
+            audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        } else {
+            audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+        }
+    }
+    
     // Function to detect orientation and aspect ratio
     function getSlideInfo(slide) {
         const img = slide.querySelector('img');
@@ -121,7 +144,7 @@ function createSmartSlideshow(container, slides) {
         };
     }
     
-    // Function to create blur background for portrait/square images
+    // Function to create blur background for portrait/square images and videos
     function createBlurBackground(slide, mediaElement) {
         // Remove existing blur background
         const existingBlur = slide.querySelector('.blur-background');
@@ -131,27 +154,55 @@ function createSmartSlideshow(container, slides) {
         
         const slideInfo = getSlideInfo(slide);
         
-        // Only create blur background for non-landscape images
-        if (slideInfo.orientation !== 'landscape' && slideInfo.type === 'image') {
+        // Only create blur background for non-landscape media
+        if (slideInfo.orientation !== 'landscape') {
             const blurBg = document.createElement('div');
             blurBg.className = 'blur-background';
             
-            // Create a blurred version of the same image
-            const blurImg = document.createElement('img');
-            blurImg.src = mediaElement.src;
-            blurImg.style.cssText = `
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                filter: blur(20px);
-                transform: scale(1.1);
-                opacity: 0.7;
-            `;
+            if (slideInfo.type === 'image') {
+                // Create a blurred version of the same image
+                const blurImg = document.createElement('img');
+                blurImg.src = mediaElement.src;
+                blurImg.style.cssText = `
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    filter: blur(25px);
+                    transform: scale(1.15);
+                    opacity: 0.6;
+                `;
+                blurBg.appendChild(blurImg);
+            } else if (slideInfo.type === 'video') {
+                // Create a blurred version of the same video
+                const blurVideo = document.createElement('video');
+                blurVideo.src = mediaElement.src;
+                blurVideo.muted = true;
+                blurVideo.loop = true;
+                blurVideo.style.cssText = `
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    filter: blur(25px);
+                    transform: scale(1.15);
+                    opacity: 0.6;
+                `;
+                blurBg.appendChild(blurVideo);
+                
+                // Sync blur video with main video
+                mediaElement.addEventListener('play', () => {
+                    blurVideo.play();
+                });
+                mediaElement.addEventListener('pause', () => {
+                    blurVideo.pause();
+                });
+            }
             
-            blurBg.appendChild(blurImg);
             slide.insertBefore(blurBg, slide.firstChild);
         }
     }
@@ -209,18 +260,19 @@ function createSmartSlideshow(container, slides) {
                 });
             }
             
-            // Handle video sizing
+            // Handle video sizing with sound enabled by default
             if (video) {
                 video.style.maxWidth = '100%';
                 video.style.maxHeight = '100%';
                 video.style.objectFit = 'contain';
                 video.style.objectPosition = 'center';
-                video.muted = true;
+                video.muted = isMuted; // Use global mute state
                 video.playsInline = true;
                 
                 // Update when video metadata loads
                 video.addEventListener('loadedmetadata', () => {
                     updateContainerHeight();
+                    createBlurBackground(slide, video);
                 });
             }
         });
@@ -297,6 +349,7 @@ function createSmartSlideshow(container, slides) {
         const video = newSlide.querySelector('video');
         if (video) {
             currentVideo = video;
+            video.muted = isMuted; // Apply current mute state
             video.play().catch(e => {
                 console.log('Autoplay prevented, waiting for user interaction');
             });

@@ -38,6 +38,35 @@
                             Order Aso-Ebi
                         </a>
                     </div>
+                    
+                    <!-- Payment Details -->
+                    <div class="payment-details">
+                        <h4><i class="fas fa-credit-card"></i> Payment Details</h4>
+                        <div class="payment-info">
+                            <div class="detail-row">
+                                <span class="label">Bank:</span>
+                                <span class="value copyable">Opay</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Account Name:</span>
+                                <span class="value copyable">Afolayan Oluwatosin Boluwatife</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Account Number:</span>
+                                <span class="value copyable">8106874570</span>
+                            </div>
+                        </div>
+                        
+                        <h5><i class="fas fa-phone"></i> For Enquiries</h5>
+                        <div class="contact-info">
+                            <a href="https://wa.me/2348098518774" target="_blank" class="contact-link">
+                                <i class="fab fa-whatsapp"></i> WhatsApp: +234 809 851 8774
+                            </a>
+                            <a href="tel:+2348098518774" class="contact-link">
+                                <i class="fas fa-phone"></i> Phone: 0809 851 8774
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Groom Side -->
@@ -60,6 +89,35 @@
                             Order Aso-Ebi
                         </a>
                     </div>
+                    
+                    <!-- Payment Details -->
+                    <div class="payment-details">
+                        <h4><i class="fas fa-credit-card"></i> Payment Details</h4>
+                        <div class="payment-info">
+                            <div class="detail-row">
+                                <span class="label">Bank:</span>
+                                <span class="value copyable">First Bank Nigeria</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Account Name:</span>
+                                <span class="value copyable">Fakeye Bosede</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Account Number:</span>
+                                <span class="value copyable">3033697986</span>
+                            </div>
+                        </div>
+                        
+                        <h5><i class="fas fa-phone"></i> For Enquiries</h5>
+                        <div class="contact-info">
+                            <a href="https://wa.me/2348034474040" target="_blank" class="contact-link">
+                                <i class="fab fa-whatsapp"></i> WhatsApp: +234 803 447 4040
+                            </a>
+                            <a href="tel:+2348034474040" class="contact-link">
+                                <i class="fas fa-phone"></i> Phone: 0803 447 4040
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -72,12 +130,120 @@
                     <ul>
                         <li>Please place your order as soon as possible to ensure timely delivery</li>
                         <li>Each form will collect your contact information and sizing details</li>
-                        <li>Payment instructions will be provided after form submission</li>
-                        <li>For any questions, please contact us via WhatsApp or email</li>
+                        <li>Payment instructions are provided above - please use the correct details for your chosen side</li>
+                        <li>For any questions, please contact the numbers provided for your respective side</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+.payment-details {
+    background: var(--cream);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border-left: 4px solid var(--soft-gold);
+}
+
+.payment-details h4 {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--charcoal);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.payment-details h4 i {
+    color: var(--soft-gold);
+}
+
+.payment-info {
+    margin-bottom: 20px;
+}
+
+.payment-details h5 {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--charcoal);
+    margin-bottom: 10px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.payment-details h5 i {
+    color: var(--soft-gold);
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--warm-gray);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: var(--soft-gold);
+}
+
+.contact-link i {
+    width: 16px;
+    text-align: center;
+}
+
+.detail-row {
+    display: flex;
+    margin-bottom: 8px;
+    align-items: flex-start;
+}
+
+.detail-row .label {
+    font-weight: 600;
+    color: var(--charcoal);
+    min-width: 120px;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+}
+
+.detail-row .value {
+    color: var(--warm-gray);
+    word-break: break-all;
+    font-size: 0.9rem;
+}
+
+.copyable {
+    background: var(--white);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    border: 1px solid var(--light-gray);
+}
+
+@media (max-width: 768px) {
+    .detail-row {
+        flex-direction: column;
+    }
+    
+    .detail-row .label {
+        min-width: auto;
+        margin-bottom: 2px;
+    }
+}
+</style>
 {% endblock %}

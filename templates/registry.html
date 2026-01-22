@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Registry | Sodienye & Ayoade{% endblock %}
+{% block title %}Gift the Couple | Sodienye & Ayoade{% endblock %}
 
 {% block content %}
-<!-- Registry Section -->
+<!-- Gift the Couple Section -->
 <section class="registry-page">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Wedding Registry</h2>
+            <h2 class="section-title">Gift the Couple</h2>
             <div class="section-divider"></div>
         </div>
         
@@ -22,7 +22,7 @@
                 <div class="note-text">
                     <p>Your love, prayers, and presence on our special day mean more to us than words can express. We are truly grateful to share this moment with family and friends who have supported and celebrated us along the way.</p>
                     
-                    <p>For those who wish to honor us with a gift, we have created a registry to help us begin this new chapter together.</p>
+                    <p>For those who wish to honor us with a gift, we have created a registry and provided secure options for cash gifts to help us begin this new chapter together.</p>
                     
                     <p>Thank you for your kindness, generosity, and thoughtfulness.</p>
                 </div>
@@ -49,11 +49,315 @@
                     <div class="registry-icon">
                         <i class="fas fa-envelope-open-text"></i>
                     </div>
-                    <h4 class="registry-title">Monetary Gifts</h4>
-                    <p class="registry-description">Should you prefer to give a monetary gift, we would be sincerely thankful. Your generosity will support our journey as we build our home and future together, and we receive it with gratitude and appreciation.</p>
+                    <h4 class="registry-title">Cash Gifts</h4>
+                    <p class="registry-description">Your presence at our wedding is the greatest gift of all. However, for family and friends who wish to bless us with a cash gift as we begin our journey together, we have provided secure options below for your convenience.</p>
+                </div>
+            </div>
+            
+            <!-- Cash Gift Options -->
+            <div class="cash-gift-section">
+                <h3 class="cash-gift-title"><i class="fas fa-gift"></i> Cash Gift Options</h3>
+                <p class="cash-gift-subtitle">Please select the option that best suits your location.</p>
+                
+                <div class="bank-options">
+                    <!-- Canada -->
+                    <div class="bank-card">
+                        <div class="bank-header">
+                            <div class="country-flag">🇨🇦</div>
+                            <h4>Canada — Interac e-Transfer (CAD)</h4>
+                        </div>
+                        <div class="bank-details">
+                            <div class="detail-row">
+                                <span class="label">Recipient Name:</span>
+                                <span class="value">Sodienye Tobin</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Interac Email:</span>
+                                <span class="value copyable">Soddyt@gmail.com</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Currency:</span>
+                                <span class="value">Canadian Dollars (CAD)</span>
+                            </div>
+                        </div>
+                        <button class="copy-btn" onclick="copyToClipboard('Soddyt@gmail.com')">
+                            <i class="fas fa-copy"></i> Copy Email
+                        </button>
+                    </div>
+                    
+                    <!-- United Kingdom -->
+                    <div class="bank-card">
+                        <div class="bank-header">
+                            <div class="country-flag">🇬🇧</div>
+                            <h4>United Kingdom — Wise (GBP)</h4>
+                        </div>
+                        <div class="bank-details">
+                            <div class="detail-row">
+                                <span class="label">Account Name:</span>
+                                <span class="value">Sodienye Tobin</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Account Number:</span>
+                                <span class="value copyable">46661136</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Sort Code:</span>
+                                <span class="value copyable">60-84-64</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">IBAN:</span>
+                                <span class="value copyable">GB27 TRWI 6084 6446 6611 36</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">SWIFT / BIC:</span>
+                                <span class="value copyable">TRWIGB2LXXX</span>
+                            </div>
+                            <div class="detail-row full-width">
+                                <span class="label">Bank:</span>
+                                <span class="value">Wise Payments Limited<br>Worship Square, 65 Clifton Street<br>London, EC2A 4JE<br>United Kingdom</span>
+                            </div>
+                        </div>
+                        <button class="copy-btn" onclick="copyToClipboard('Account: 46661136, Sort Code: 60-84-64, IBAN: GB27 TRWI 6084 6446 6611 36')">
+                            <i class="fas fa-copy"></i> Copy Details
+                        </button>
+                    </div>
+                    
+                    <!-- United States -->
+                    <div class="bank-card">
+                        <div class="bank-header">
+                            <div class="country-flag">🇺🇸</div>
+                            <h4>United States — Wise (USD)</h4>
+                        </div>
+                        <div class="bank-details">
+                            <div class="detail-row">
+                                <span class="label">Account Name:</span>
+                                <span class="value">Sodienye Tobin</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Account Number:</span>
+                                <span class="value copyable">331781777752461</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Account Type:</span>
+                                <span class="value">Deposit</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Routing Number:</span>
+                                <span class="value copyable">084009519</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">SWIFT / BIC:</span>
+                                <span class="value copyable">TRWIUS35XXX</span>
+                            </div>
+                            <div class="detail-row full-width">
+                                <span class="label">Bank:</span>
+                                <span class="value">Wise US Inc<br>108 W 13th St<br>Wilmington, DE 19801<br>United States</span>
+                            </div>
+                        </div>
+                        <button class="copy-btn" onclick="copyToClipboard('Account: 331781777752461, Routing: 084009519, SWIFT: TRWIUS35XXX')">
+                            <i class="fas fa-copy"></i> Copy Details
+                        </button>
+                    </div>
+                    
+                    <!-- Nigeria -->
+                    <div class="bank-card">
+                        <div class="bank-header">
+                            <div class="country-flag">🇳🇬</div>
+                            <h4>Nigeria — Local Bank Transfer (NGN)</h4>
+                        </div>
+                        <div class="bank-details">
+                            <div class="detail-row">
+                                <span class="label">Account Name:</span>
+                                <span class="value">Fakeye Ayoade O</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Account Number:</span>
+                                <span class="value copyable">0724083464</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Bank:</span>
+                                <span class="value">Access Bank PLC</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Currency:</span>
+                                <span class="value">Nigerian Naira (NGN)</span>
+                            </div>
+                        </div>
+                        <button class="copy-btn" onclick="copyToClipboard('Account: 0724083464, Bank: Access Bank PLC')">
+                            <i class="fas fa-copy"></i> Copy Details
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+.cash-gift-section {
+    margin-top: 60px;
+    padding-top: 60px;
+    border-top: 1px solid var(--light-gray);
+}
+
+.cash-gift-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: var(--charcoal);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.cash-gift-title i {
+    color: var(--soft-gold);
+    margin-right: 10px;
+}
+
+.cash-gift-subtitle {
+    text-align: center;
+    color: var(--warm-gray);
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+
+.bank-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.bank-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--soft-gold);
+}
+
+.bank-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.country-flag {
+    font-size: 2rem;
+}
+
+.bank-header h4 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    color: var(--charcoal);
+    margin: 0;
+}
+
+.bank-details {
+    margin-bottom: 20px;
+}
+
+.detail-row {
+    display: flex;
+    margin-bottom: 12px;
+    align-items: flex-start;
+}
+
+.detail-row.full-width {
+    flex-direction: column;
+}
+
+.detail-row .label {
+    font-weight: 600;
+    color: var(--charcoal);
+    min-width: 140px;
+    flex-shrink: 0;
+}
+
+.detail-row .value {
+    color: var(--warm-gray);
+    word-break: break-all;
+}
+
+.detail-row.full-width .value {
+    margin-top: 5px;
+    line-height: 1.5;
+}
+
+.copyable {
+    background: var(--cream);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+.copy-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--soft-gold);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    justify-content: center;
+}
+
+.copy-btn:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+}
+
+.copy-btn.copied {
+    background: #22C55E;
+}
+
+@media (max-width: 768px) {
+    .bank-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .detail-row {
+        flex-direction: column;
+    }
+    
+    .detail-row .label {
+        min-width: auto;
+        margin-bottom: 5px;
+    }
+    
+    .bank-card {
+        padding: 20px;
+    }
+}
+</style>
+
+<script>
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+        // Show success feedback
+        const buttons = document.querySelectorAll('.copy-btn');
+        buttons.forEach(btn => {
+            if (btn.onclick.toString().includes(text.substring(0, 20))) {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                btn.classList.add('copied');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }
+        });
+    }, function(err) {
+        console.error('Could not copy text: ', err);
+    });
+}
+</script>
 {% endblock %}

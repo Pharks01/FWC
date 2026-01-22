@@ -285,6 +285,36 @@ section {
     transform: scale(1.2);
 }
 
+/* Audio Control Button */
+.audio-control {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: var(--white);
+    cursor: pointer;
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.audio-control:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.audio-control i {
+    transition: transform 0.3s ease;
+}
+
 /* Blur Background for Portrait/Square Images */
 .blur-background {
     position: absolute;
@@ -449,20 +479,177 @@ section {
     opacity: 0.3;
 }
 
-/* Countdown Section */
+/* Hero Info Section */
+.hero-info {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.hero-info .hero-tagline {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-style: italic;
+    margin-bottom: 15px;
+    color: var(--soft-gold);
+}
+
+.hero-info .hero-date {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: var(--cream);
+}
+
+.hero-info .hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Butterfly Text Animation */
+.butterfly-text {
+    font-family: var(--font-serif);
+    font-size: 4.5rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    display: inline-block;
+}
+
+.butterfly-text .bride-name,
+.butterfly-text .groom-name {
+    display: inline-block;
+    animation: butterflyFloat 4s ease-in-out infinite;
+}
+
+.butterfly-text .bride-name {
+    animation-delay: 0s;
+}
+
+.butterfly-text .groom-name {
+    animation-delay: 0.5s;
+}
+
+.butterfly-text .amp {
+    animation: butterflyFloat 4s ease-in-out infinite;
+    animation-delay: 0.25s;
+}
+
+@keyframes butterflyFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    25% {
+        transform: translateY(-8px) rotate(1deg);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translateY(-3px) rotate(-0.5deg);
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(-10px) rotate(0.5deg);
+        opacity: 0.95;
+    }
+}
+
+/* Thunderstorm Countdown Effect */
 .countdown-section {
     background: var(--cream);
     padding: 60px 0;
 }
 
-.countdown-card {
-    background: var(--white);
-    padding: 50px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    max-width: 800px;
-    margin: 0 auto;
+.countdown-card.thunderstorm {
+    background: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #2C3E50 100%);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.lightning {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+    animation: lightning 4s infinite;
+}
+
+@keyframes lightning {
+    0%, 90%, 100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    91% {
+        opacity: 1;
+        transform: scale(1.1);
+        background: radial-gradient(ellipse at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 30%, transparent 60%);
+    }
+    92% {
+        opacity: 0.3;
+    }
+    93% {
+        opacity: 1;
+        background: radial-gradient(ellipse at center, rgba(212,175,55,0.6) 0%, rgba(255,255,255,0.3) 40%, transparent 70%);
+    }
+    94% {
+        opacity: 0;
+    }
+    95% {
+        opacity: 0.8;
+        background: radial-gradient(ellipse at center, rgba(255,255,255,0.6) 0%, transparent 50%);
+    }
+    96% {
+        opacity: 0;
+    }
+}
+
+.countdown-card.thunderstorm .countdown-title {
+    color: var(--white);
+    text-shadow: 0 0 20px rgba(212,175,55,0.5);
+}
+
+.countdown-card.thunderstorm .countdown-subtitle {
+    color: rgba(255,255,255,0.8);
+}
+
+.countdown-card.thunderstorm .countdown-number {
+    color: var(--soft-gold);
+    text-shadow: 0 0 15px rgba(212,175,55,0.7);
+}
+
+.countdown-card.thunderstorm .countdown-label {
+    color: rgba(255,255,255,0.9);
+}
+
+.countdown-card.thunderstorm .countdown-separator {
+    color: var(--soft-gold);
+    text-shadow: 0 0 10px rgba(212,175,55,0.5);
+}
+
+/* Enhanced Countdown Animation */
+.countdown-item {
+    animation: countdownPulse 2s ease-in-out infinite;
+}
+
+.countdown-item:nth-child(1) { animation-delay: 0s; }
+.countdown-item:nth-child(3) { animation-delay: 0.5s; }
+.countdown-item:nth-child(5) { animation-delay: 1s; }
+.countdown-item:nth-child(7) { animation-delay: 1.5s; }
+
+@keyframes countdownPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
 }
 
 .countdown-title {
