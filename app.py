@@ -41,8 +41,7 @@ def load_data():
             'venue': 'TBD',
             'address': 'Details to be announced',
             'location': 'Location TBD',
-            'map_embed': '',
-            'rsvp_link': '#'
+            'map_embed': ''
         },
         'white_wedding_reception': {
             'date': 'April 2026 (Date TBD)',
@@ -50,10 +49,8 @@ def load_data():
             'venue': 'TBD',
             'address': 'Details to be announced',
             'location': 'Location TBD',
-            'map_embed': '',
-            'rsvp_link': '#'
+            'map_embed': ''
         },
-        'rsvp_link': '#',
         'contact': {
             'whatsapp': '+234 907 410 1930',
             'email': 'foreverwecleave@gmail.com'
@@ -126,6 +123,23 @@ def index():
         'seconds': seconds
     }
     
+    # Calculate countdown for white wedding (using a placeholder date)
+    # Since the date is TBD, we'll use April 1, 2026 as a placeholder
+    white_wedding_date = datetime.datetime(2026, 4, 1, 11, 0, 0)
+    white_time_diff = white_wedding_date - now
+    
+    white_days = max(0, white_time_diff.days)
+    white_hours = max(0, white_time_diff.seconds // 3600)
+    white_minutes = max(0, (white_time_diff.seconds % 3600) // 60)
+    white_seconds = max(0, white_time_diff.seconds % 60)
+    
+    white_countdown = {
+        'days': white_days,
+        'hours': white_hours,
+        'minutes': white_minutes,
+        'seconds': white_seconds
+    }
+    
     # Get media files for slideshows
     hero_media = get_media_files('hero')
     proposal_media = get_media_files('proposal')
@@ -136,6 +150,7 @@ def index():
     
     return render_template('index.html', 
                          countdown=countdown,
+                         white_countdown=white_countdown,
                          hero_media=hero_media,
                          proposal_media=proposal_media,
                          gallery_media=gallery_media,
@@ -205,7 +220,6 @@ Warm regards,
         
         return render_template('rsvp.html', 
                              data=data,
-                             rsvp_link=data.get('rsvp_link', '#'),
                              whatsapp_url=whatsapp_url,
                              email_url=email_url,
                              submitted=True,
@@ -218,7 +232,7 @@ Warm regards,
                                  'message': message
                              })
     
-    return render_template('rsvp.html', data=data, rsvp_link=data.get('rsvp_link', '#'), submitted=False)
+    return render_template('rsvp.html', data=data, submitted=False)
 
 # Admin authentication decorator
 def require_admin(f):
@@ -266,8 +280,7 @@ def admin_update():
         'venue': request.form.get('white_wedding_venue', 'TBD'),
         'address': request.form.get('white_wedding_address', 'Details to be announced'),
         'location': request.form.get('white_wedding_location', 'Location TBD'),
-        'map_embed': request.form.get('white_wedding_map', ''),
-        'rsvp_link': request.form.get('white_wedding_rsvp_link', '#')
+        'map_embed': request.form.get('white_wedding_map', '')
     }
     
     # Update white wedding reception details
@@ -277,8 +290,7 @@ def admin_update():
         'venue': request.form.get('reception_venue', 'TBD'),
         'address': request.form.get('reception_address', 'Details to be announced'),
         'location': request.form.get('reception_location', 'Location TBD'),
-        'map_embed': request.form.get('reception_map', ''),
-        'rsvp_link': request.form.get('reception_rsvp_link', '#')
+        'map_embed': request.form.get('reception_map', '')
     }
     
     # Update contact info
@@ -286,9 +298,6 @@ def admin_update():
         'whatsapp': request.form.get('whatsapp', '+234 907 410 1930'),
         'email': request.form.get('email', 'foreverwecleave@gmail.com')
     }
-    
-    # Update RSVP link
-    data['rsvp_link'] = request.form.get('rsvp_link', '#')
     
     save_data(data)
     flash('Settings updated successfully!', 'success')

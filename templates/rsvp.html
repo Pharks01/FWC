@@ -77,6 +77,45 @@
                 {% endif %}
             </div>
             
+            <!-- White Wedding Reception RSVP -->
+            <div class="rsvp-card">
+                <div class="rsvp-header">
+                    <div class="rsvp-icon">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <h3 class="rsvp-title">White Wedding Reception</h3>
+                </div>
+                
+                <div class="event-details">
+                    <div class="event-detail">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>{{ data.white_wedding_reception.date }}</span>
+                    </div>
+                    <div class="event-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>{{ data.white_wedding_reception.time }}</span>
+                    </div>
+                    <div class="event-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>{{ data.white_wedding_reception.location }}</span>
+                    </div>
+                    <div class="event-detail">
+                        <i class="fas fa-info-circle"></i>
+                        <span>{{ data.white_wedding_reception.venue }}</span>
+                    </div>
+                </div>
+                
+                <div class="rsvp-form-embed">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdDCIRthD6ENWwSHnr_gmr4s3cYYFVeimNCOumzi7PmCDcOfw/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                </div>
+                
+                {% if data.white_wedding_reception.date == 'April 2026 (Date TBD)' or data.white_wedding_reception.venue == 'TBD' %}
+                <div class="rsvp-note">
+                    <p><i class="fas fa-info-circle"></i> Details will be updated soon. Please check back for venue and date confirmation.</p>
+                </div>
+                {% endif %}
+            </div>
+            
             <div class="rsvp-note">
                 <p><i class="fas fa-heart"></i> We are truly grateful for your love and support</p>
             </div>

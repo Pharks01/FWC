@@ -99,22 +99,22 @@
             
             <div class="countdown-timer" id="white-wedding-countdown">
                 <div class="countdown-item">
-                    <span class="countdown-number">--</span>
+                    <span class="countdown-number">{{ white_countdown.days }}</span>
                     <span class="countdown-label">Days</span>
                 </div>
                 <div class="countdown-separator">:</div>
                 <div class="countdown-item">
-                    <span class="countdown-number">--</span>
+                    <span class="countdown-number">{{ white_countdown.hours }}</span>
                     <span class="countdown-label">Hours</span>
                 </div>
                 <div class="countdown-separator">:</div>
                 <div class="countdown-item">
-                    <span class="countdown-number">--</span>
+                    <span class="countdown-number">{{ white_countdown.minutes }}</span>
                     <span class="countdown-label">Minutes</span>
                 </div>
                 <div class="countdown-separator">:</div>
                 <div class="countdown-item">
-                    <span class="countdown-number">--</span>
+                    <span class="countdown-number">{{ white_countdown.seconds }}</span>
                     <span class="countdown-label">Seconds</span>
                 </div>
             </div>
@@ -331,15 +331,6 @@
                     </div>
                 </div>
                 {% endif %}
-                
-                {% if data.white_wedding.rsvp_link and data.white_wedding.rsvp_link != '#' %}
-                <div class="event-rsvp">
-                    <a href="{{ data.white_wedding.rsvp_link }}" target="_blank" class="btn btn-outline">
-                        <i class="fas fa-clipboard-list"></i>
-                        RSVP for White Wedding
-                    </a>
-                </div>
-                {% endif %}
             </div>
             
             <!-- White Wedding Reception -->
@@ -379,15 +370,6 @@
                         <p>Details to be announced</p>
                         <p class="placeholder-subtitle">Check back for updates</p>
                     </div>
-                </div>
-                {% endif %}
-                
-                {% if data.white_wedding_reception.rsvp_link and data.white_wedding_reception.rsvp_link != '#' %}
-                <div class="event-rsvp">
-                    <a href="{{ data.white_wedding_reception.rsvp_link }}" target="_blank" class="btn btn-outline">
-                        <i class="fas fa-clipboard-list"></i>
-                        RSVP for Reception
-                    </a>
                 </div>
                 {% endif %}
             </div>
