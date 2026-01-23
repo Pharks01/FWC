@@ -123,9 +123,8 @@ def index():
         'seconds': seconds
     }
     
-    # Calculate countdown for white wedding (using a placeholder date)
-    # Since the date is TBD, we'll use April 1, 2026 as a placeholder
-    white_wedding_date = datetime.datetime(2026, 4, 1, 11, 0, 0)
+    # Calculate countdown for white wedding
+    white_wedding_date = datetime.datetime(2026, 4, 25, 11, 0, 0)
     white_time_diff = white_wedding_date - now
     
     white_days = max(0, white_time_diff.days)
