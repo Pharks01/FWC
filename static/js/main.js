@@ -548,12 +548,52 @@ function updateCountdown() {
         if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
         if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
         if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+        
+        // Return true to indicate countdown is still active
+        return true;
+    }
+    return false;
+}
+
+// Countdown functionality for White Wedding
+function updateWhiteWeddingCountdown() {
+    const whiteWeddingDate = new Date('2026-04-27T11:00:00');
+    const now = new Date();
+    const diff = whiteWeddingDate - now;
+    
+    if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        // Get white wedding countdown elements
+        const whiteCountdownEl = document.getElementById('white-wedding-countdown');
+        if (whiteCountdownEl) {
+            const daysEl = whiteCountdownEl.querySelector('.countdown-item:nth-child(1) .countdown-number');
+            const hoursEl = whiteCountdownEl.querySelector('.countdown-item:nth-child(3) .countdown-number');
+            const minutesEl = whiteCountdownEl.querySelector('.countdown-item:nth-child(5) .countdown-number');
+            const secondsEl = whiteCountdownEl.querySelector('.countdown-item:nth-child(7) .countdown-number');
+            
+            if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
+            if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+            if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+            if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+        }
     }
 }
 
-// Update countdown every second
-setInterval(updateCountdown, 1000);
+// Update both countdowns every second
+setInterval(function() {
+    const traditionalActive = updateCountdown();
+    updateWhiteWeddingCountdown();
+    
+    // If traditional countdown has ended, we can stop updating it
+    // But keep updating white wedding countdown regardless
+}, 1000);
+
 updateCountdown();
+updateWhiteWeddingCountdown();
 
 // Utility function for debouncing
 function debounce(func, wait) {

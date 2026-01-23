@@ -147,13 +147,22 @@ def index():
     # Load dynamic data
     data = load_data()
     
+    # Determine hero date based on current date
+    # Before March 7, 2026 show Traditional Wedding, after that show White Wedding
+    traditional_wedding_date = datetime.datetime(2026, 3, 7, 13, 0, 0)
+    if now < traditional_wedding_date:
+        hero_date = "March 7, 2026 • Port Harcourt, Nigeria"
+    else:
+        hero_date = "April 27, 2026 • Ontario, Canada"
+    
     return render_template('index.html', 
                          countdown=countdown,
                          white_countdown=white_countdown,
                          hero_media=hero_media,
                          proposal_media=proposal_media,
                          gallery_media=gallery_media,
-                         data=data)
+                         data=data,
+                         hero_date=hero_date)
 
 @app.route('/registry')
 def registry():

@@ -37,7 +37,7 @@
                     <span class="groom-name">Ayoade</span>
                 </h1>
                 <div class="hero-tagline">Forever We Cleave</div>
-                <div class="hero-date">March 7, 2026 • Port Harcourt, Nigeria</div>
+                <div class="hero-date">{{ hero_date }}</div>
                 
                 <div class="hero-buttons">
                     <a href="{{ url_for('rsvp') }}" class="btn btn-primary">
@@ -58,7 +58,8 @@
     </div>
 </section>
 
-<!-- Countdown Section -->
+<!-- Traditional Wedding Countdown - Only show before March 7, 2026 -->
+{% if countdown.days > 0 or countdown.hours > 0 or countdown.minutes > 0 or countdown.seconds > 0 %}
 <section class="countdown-section">
     <div class="container">
         <div class="countdown-card">
@@ -89,6 +90,7 @@
         </div>
     </div>
 </section>
+{% endif %}
 
 <!-- White Wedding Countdown Section -->
 <section class="countdown-section white-wedding-countdown">
@@ -118,7 +120,6 @@
                     <span class="countdown-label">Seconds</span>
                 </div>
             </div>
-            <p style="margin-top: 20px; color: var(--warm-gray); font-style: italic;">Date to be announced</p>
         </div>
     </div>
 </section>
