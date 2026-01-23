@@ -37,11 +37,8 @@
                     </div>
                 </div>
                 
-                <div class="rsvp-action">
-                    <a href="https://forms.gle/vZKjAkQeG4viJj8V6" target="_blank" class="btn btn-primary btn-large">
-                        <i class="fas fa-clipboard-list"></i>
-                        RSVP for Traditional Wedding
-                    </a>
+                <div class="rsvp-form-embed">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScp8kd8iCtAL83PgwbV4IEgC3INiltPyQ4P9IKDhLXmpuGyKg/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 </div>
             </div>
             
@@ -69,11 +66,8 @@
                     </div>
                 </div>
                 
-                <div class="rsvp-action">
-                    <a href="https://forms.gle/HerEGvkQXvhLWNPR9" target="_blank" class="btn btn-primary btn-large">
-                        <i class="fas fa-clipboard-list"></i>
-                        RSVP for White Wedding
-                    </a>
+                <div class="rsvp-form-embed">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd_nQErCzZBH-Equw9TTsjXUg6f_lB5tNaigT-9VN1Dfu13gg/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 </div>
                 
                 {% if data.white_wedding.date == 'April 2026 (Date TBD)' or data.white_wedding.venue == 'TBD' %}
@@ -174,6 +168,25 @@
 .rsvp-note i {
     color: var(--soft-gold);
     margin-right: 8px;
+}
+
+.rsvp-form-embed {
+    margin-top: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.rsvp-form-embed iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .rsvp-form-embed iframe {
+        height: 500px;
+    }
 }
 
 @media (max-width: 768px) {

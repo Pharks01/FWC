@@ -90,6 +90,39 @@
     </div>
 </section>
 
+<!-- White Wedding Countdown Section -->
+<section class="countdown-section white-wedding-countdown">
+    <div class="container">
+        <div class="countdown-card">
+            <h3 class="countdown-title">White Wedding Countdown</h3>
+            <p class="countdown-subtitle">White Wedding • April 2026</p>
+            
+            <div class="countdown-timer" id="white-wedding-countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number">--</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item">
+                    <span class="countdown-number">--</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item">
+                    <span class="countdown-number">--</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item">
+                    <span class="countdown-number">--</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+            <p style="margin-top: 20px; color: var(--warm-gray); font-style: italic;">Date to be announced</p>
+        </div>
+    </div>
+</section>
+
 <!-- Our Love Story Section -->
 <section id="story" class="love-story">
     <div class="container">
@@ -304,6 +337,56 @@
                     <a href="{{ data.white_wedding.rsvp_link }}" target="_blank" class="btn btn-outline">
                         <i class="fas fa-clipboard-list"></i>
                         RSVP for White Wedding
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- White Wedding Reception -->
+            <div class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">White Wedding Reception</h3>
+                    <div class="event-badge">April 2026</div>
+                </div>
+                
+                <div class="event-details">
+                    <div class="event-detail">
+                        <i class="far fa-calendar"></i>
+                        <span>{{ data.white_wedding_reception.date }}</span>
+                    </div>
+                    <div class="event-detail">
+                        <i class="far fa-clock"></i>
+                        <span>{{ data.white_wedding_reception.time }}</span>
+                    </div>
+                    <div class="event-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>{{ data.white_wedding_reception.venue }}</span>
+                    </div>
+                    <div class="event-detail">
+                        <i class="fas fa-location-arrow"></i>
+                        <span>{{ data.white_wedding_reception.address }}</span>
+                    </div>
+                </div>
+                
+                {% if data.white_wedding_reception.map_embed %}
+                <div class="event-map">
+                    {{ data.white_wedding_reception.map_embed|safe }}
+                </div>
+                {% else %}
+                <div class="event-placeholder">
+                    <div class="placeholder-content">
+                        <i class="fas fa-bell"></i>
+                        <p>Details to be announced</p>
+                        <p class="placeholder-subtitle">Check back for updates</p>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if data.white_wedding_reception.rsvp_link and data.white_wedding_reception.rsvp_link != '#' %}
+                <div class="event-rsvp">
+                    <a href="{{ data.white_wedding_reception.rsvp_link }}" target="_blank" class="btn btn-outline">
+                        <i class="fas fa-clipboard-list"></i>
+                        RSVP for Reception
                     </a>
                 </div>
                 {% endif %}

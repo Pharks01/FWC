@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for, flash, send_from_directory
+from flask import Flask, render_template, request, jsonify, redirect, url_for, flash, send_from_directory, session
 from werkzeug.utils import secure_filename
+from functools import wraps
 import os
 import json
 import datetime
@@ -7,6 +8,10 @@ from pathlib import Path
 
 app = Flask(__name__)
 app.secret_key = 'forever_we_cleave_2026'
+
+# Admin credentials (simple password protection)
+ADMIN_USERNAME = 'admin'
+ADMIN_PASSWORD = 'forever2026'
 
 # Configuration
 UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'uploads')
@@ -31,6 +36,15 @@ def load_data():
             return json.load(f)
     return {
         'white_wedding': {
+            'date': 'April 2026 (Date TBD)',
+            'time': 'TBD',
+            'venue': 'TBD',
+            'address': 'Details to be announced',
+            'location': 'Location TBD',
+            'map_embed': '',
+            'rsvp_link': '#'
+        },
+        'white_wedding_reception': {
             'date': 'April 2026 (Date TBD)',
             'time': 'TBD',
             'venue': 'TBD',
@@ -206,12 +220,42 @@ Warm regards,
     
     return render_template('rsvp.html', data=data, rsvp_link=data.get('rsvp_link', '#'), submitted=False)
 
+# Admin authentication decorator
+def require_admin(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'admin_logged_in' not in session:
+            return redirect(url_for('admin_login'))
+        return f(*args, **kwargs)
+    return decorated_function
+
+@app.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        username = request.form.get('username', '').strip()
+        password = request.form.get('password', '').strip()
+        
+        if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+            session['admin_logged_in'] = True
+            return redirect(url_for('admin'))
+        else:
+            flash('Invalid username or password', 'error')
+    
+    return render_template('admin_login.html')
+
+@app.route('/admin/logout')
+def admin_logout():
+    session.pop('admin_logged_in', None)
+    return redirect(url_for('index'))
+
 @app.route('/admin')
+@require_admin
 def admin():
     data = load_data()
     return render_template('admin.html', data=data)
 
 @app.route('/admin/update', methods=['POST'])
+@require_admin
 def admin_update():
     data = load_data()
     
@@ -224,6 +268,17 @@ def admin_update():
         'location': request.form.get('white_wedding_location', 'Location TBD'),
         'map_embed': request.form.get('white_wedding_map', ''),
         'rsvp_link': request.form.get('white_wedding_rsvp_link', '#')
+    }
+    
+    # Update white wedding reception details
+    data['white_wedding_reception'] = {
+        'date': request.form.get('reception_date', 'April 2026 (Date TBD)'),
+        'time': request.form.get('reception_time', 'TBD'),
+        'venue': request.form.get('reception_venue', 'TBD'),
+        'address': request.form.get('reception_address', 'Details to be announced'),
+        'location': request.form.get('reception_location', 'Location TBD'),
+        'map_embed': request.form.get('reception_map', ''),
+        'rsvp_link': request.form.get('reception_rsvp_link', '#')
     }
     
     # Update contact info

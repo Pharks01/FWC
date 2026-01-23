@@ -527,7 +527,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Countdown functionality
+// Countdown functionality for Traditional Wedding
 function updateCountdown() {
     const weddingDate = new Date('2026-03-07T13:00:00');
     const now = new Date();
