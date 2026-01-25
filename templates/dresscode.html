@@ -1,0 +1,445 @@
+{% extends "base.html" %}
+
+{% block title %}Dress Code | Sodienye & Ayoade{% endblock %}
+
+{% block content %}
+<!-- Dress Code Section -->
+<section class="dresscode-page">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Dress Code</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">Elegant attire for a memorable celebration</p>
+        </div>
+        
+        <!-- Dress Code Rules -->
+        <div class="dresscode-rules">
+            <div class="rule-card">
+                <div class="rule-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3 class="rule-title">For Men</h3>
+                <p class="rule-text">Tuxedos or suits with ties only. Men who want to play safe may wear a black suit with tie.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-icon">
+                    <i class="fas fa-female"></i>
+                </div>
+                <h3 class="rule-title">For Women</h3>
+                <p class="rule-text">Long, elegant, colourful dresses only. Dresses should be floor-length or tea-length for formal elegance.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-icon">
+                    <i class="fas fa-ban"></i>
+                </div>
+                <h3 class="rule-title">Not Permitted</h3>
+                <p class="rule-text">No native or traditional attire permitted. This includes traditional fabrics, patterns, or styles.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3 class="rule-title">Colour Guidelines</h3>
+                <p class="rule-text">Formal, bright colours only. Please refer to our approved colour palette below for inspiration.</p>
+            </div>
+        </div>
+        
+        <!-- Important Notice -->
+        <div class="dresscode-notice">
+            <div class="notice-card">
+                <div class="notice-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h4>Important Notice</h4>
+                <p>We kindly ask all guests to adhere to this dress code to maintain the elegant and cohesive atmosphere of our celebration. Your cooperation ensures beautiful photos and a memorable experience for everyone.</p>
+            </div>
+        </div>
+        
+        <!-- Colour Palette -->
+        <div class="colour-palette-section">
+            <h3 class="palette-title">Approved Colour Palette</h3>
+            <p class="palette-subtitle">Choose from these elegant colours for your attire</p>
+            
+            <div class="colour-grid">
+                <!-- Fuchsia - Feminine -->
+                <div class="colour-card">
+                    <div class="colour-swatch" style="background-color: #E7468A;"></div>
+                    <h4 class="colour-name">Fuchsia</h4>
+                    <div class="colour-image">
+                        <img src="{{ url_for('static', filename='images/dresscode/fuchsia.jpg') }}" alt="Fuchsia dress">
+                    </div>
+                    <p class="colour-description">Vibrant pink for bold elegance</p>
+                </div>
+                
+                <!-- Rosy Pink - Feminine -->
+                <div class="colour-card">
+                    <div class="colour-swatch" style="background-color: #EC8A9A;"></div>
+                    <h4 class="colour-name">Rosy Pink</h4>
+                    <div class="colour-image">
+                        <img src="{{ url_for('static', filename='images/dresscode/rosy-pink.jpg') }}" alt="Rosy Pink dress">
+                    </div>
+                    <p class="colour-description">Soft blush for romantic charm</p>
+                </div>
+                
+                <!-- Sweet Lavender - Feminine -->
+                <div class="colour-card">
+                    <div class="colour-swatch" style="background-color: #C799E9;"></div>
+                    <h4 class="colour-name">Sweet Lavender</h4>
+                    <div class="colour-image">
+                        <img src="{{ url_for('static', filename='images/dresscode/sweet-lavender.jpg') }}" alt="Sweet Lavender dress">
+                    </div>
+                    <p class="colour-description">Gentle purple for dreamy sophistication</p>
+                </div>
+                
+                <!-- Burnt Orange - Unisex -->
+                <div class="colour-card">
+                    <div class="colour-swatch" style="background-color: #D4612A;"></div>
+                    <h4 class="colour-name">Burnt Orange</h4>
+                    <div class="colour-image">
+                        <img src="{{ url_for('static', filename='images/dresscode/burnt-orange.jpg') }}" alt="Burnt Orange outfits">
+                    </div>
+                    <p class="colour-description">Warm orange for confident style</p>
+                </div>
+                
+                <!-- Rust - Unisex -->
+                <div class="colour-card">
+                    <div class="colour-swatch" style="background-color: #A34C2D;"></div>
+                    <h4 class="colour-name">Rust</h4>
+                    <div class="colour-image">
+                        <img src="{{ url_for('static', filename='images/dresscode/rust.jpg') }}" alt="Rust outfits">
+                    </div>
+                    <p class="colour-description">Earthy brown for timeless elegance</p>
+                </div>
+                
+                <!-- Butter Yellow - Feminine -->
+                <div class="colour-card">
+                    <div class="colour-swatch" style="background-color: #FBD44C;"></div>
+                    <h4 class="colour-name">Butter Yellow</h4>
+                    <div class="colour-image">
+                        <img src="{{ url_for('static', filename='images/dresscode/butter-yellow.jpg') }}" alt="Butter Yellow dress">
+                    </div>
+                    <p class="colour-description">Cheerful yellow for sunny elegance</p>
+                </div>
+                
+                <!-- Sage Green - Unisex -->
+                <div class="colour-card">
+                    <div class="colour-swatch" style="background-color: #A8B989;"></div>
+                    <h4 class="colour-name">Sage Green</h4>
+                    <div class="colour-image">
+                        <img src="{{ url_for('static', filename='images/dresscode/sage-green.jpg') }}" alt="Sage Green outfits">
+                    </div>
+                    <p class="colour-description">Soft green for natural sophistication</p>
+                </div>
+                
+                <!-- Teal - Unisex -->
+                <div class="colour-card">
+                    <div class="colour-swatch" style="background-color: #008E94;"></div>
+                    <h4 class="colour-name">Teal</h4>
+                    <div class="colour-image">
+                        <img src="{{ url_for('static', filename='images/dresscode/teal.jpg') }}" alt="Teal outfits">
+                    </div>
+                    <p class="colour-description">Deep teal for refined elegance</p>
+                </div>
+                
+                <!-- Cornflower Blue - Unisex -->
+                <div class="colour-card">
+                    <div class="colour-swatch" style="background-color: #6D95D9;"></div>
+                    <h4 class="colour-name">Cornflower Blue</h4>
+                    <div class="colour-image">
+                        <img src="{{ url_for('static', filename='images/dresscode/cornflower-blue.jpg') }}" alt="Cornflower Blue outfits">
+                    </div>
+                    <p class="colour-description">Soft blue for classic charm</p>
+                </div>
+                
+                <!-- Royal Blue - Unisex -->
+                <div class="colour-card">
+                    <div class="colour-swatch" style="background-color: #195A45;"></div>
+                    <h4 class="colour-name">Royal Blue</h4>
+                    <div class="colour-image">
+                        <img src="{{ url_for('static', filename='images/dresscode/royal-blue.jpg') }}" alt="Royal Blue outfits">
+                    </div>
+                    <p class="colour-description">Deep blue for regal sophistication</p>
+                </div>
+                
+                <!-- Royal Purple - Unisex -->
+                <div class="colour-card">
+                    <div class="colour-swatch" style="background-color: #4B1E7A;"></div>
+                    <h4 class="colour-name">Royal Purple</h4>
+                    <div class="colour-image">
+                        <img src="{{ url_for('static', filename='images/dresscode/royal-purple.jpg') }}" alt="Royal Purple outfits">
+                    </div>
+                    <p class="colour-description">Rich purple for majestic elegance</p>
+                </div>
+                
+                <!-- Wine - Unisex -->
+                <div class="colour-card">
+                    <div class="colour-swatch" style="background-color: #7A0D28;"></div>
+                    <h4 class="colour-name">Wine</h4>
+                    <div class="colour-image">
+                        <img src="{{ url_for('static', filename='images/dresscode/wine.jpg') }}" alt="Wine outfits">
+                    </div>
+                    <p class="colour-description">Deep burgundy for romantic elegance</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Additional Tips -->
+        <div class="dresscode-tips">
+            <h3 class="tips-title">Styling Tips</h3>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Choose fabrics like silk, satin, chiffon, or velvet for formal elegance</span>
+                </div>
+                <div class="tip-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Accessorize with statement jewelry, elegant clutches, and formal shoes</span>
+                </div>
+                <div class="tip-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Ensure your outfit is well-fitted and tailored for the perfect silhouette</span>
+                </div>
+                <div class="tip-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Consider the venue and season when selecting your attire</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.dresscode-page {
+    background: var(--ivory);
+    padding: 80px 0;
+}
+
+.dresscode-rules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.rule-card {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rule-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.rule-icon {
+    font-size: 2.5rem;
+    color: var(--soft-gold);
+    margin-bottom: 20px;
+}
+
+.rule-title {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    color: var(--charcoal);
+    margin-bottom: 15px;
+}
+
+.rule-text {
+    color: var(--warm-gray);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.dresscode-notice {
+    margin-bottom: 80px;
+}
+
+.notice-card {
+    background: linear-gradient(135deg, var(--cream), var(--white));
+    padding: 40px;
+    border-radius: 12px;
+    border-left: 4px solid var(--soft-gold);
+    text-align: center;
+}
+
+.notice-icon {
+    font-size: 2rem;
+    color: var(--soft-gold);
+    margin-bottom: 20px;
+}
+
+.notice-card h4 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--charcoal);
+    margin-bottom: 15px;
+}
+
+.notice-card p {
+    color: var(--warm-gray);
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.colour-palette-section {
+    margin-bottom: 80px;
+}
+
+.palette-title {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    color: var(--charcoal);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.palette-subtitle {
+    color: var(--warm-gray);
+    text-align: center;
+    margin-bottom: 50px;
+    font-style: italic;
+}
+
+.colour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.colour-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.colour-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+
+.colour-swatch {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.colour-name {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    color: var(--charcoal);
+    text-align: center;
+    margin: 20px 0 15px 0;
+    padding: 0 20px;
+}
+
+.colour-image {
+    padding: 0 20px;
+    margin-bottom: 15px;
+}
+
+.colour-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.colour-description {
+    color: var(--warm-gray);
+    text-align: center;
+    padding: 0 20px 25px 20px;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.dresscode-tips {
+    background: var(--cream);
+    padding: 50px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.tips-title {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--charcoal);
+    margin-bottom: 30px;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tip-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    text-align: left;
+}
+
+.tip-item i {
+    color: var(--soft-gold);
+    font-size: 1.2rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.tip-item span {
+    color: var(--charcoal);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .dresscode-page {
+        padding: 40px 0;
+    }
+    
+    .dresscode-rules {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .rule-card {
+        padding: 30px 20px;
+    }
+    
+    .colour-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .dresscode-tips {
+        padding: 30px 20px;
+    }
+    
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .palette-title {
+        font-size: 1.8rem;
+    }
+}
+</style>
+{% endblock %}

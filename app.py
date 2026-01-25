@@ -172,6 +172,10 @@ def registry():
 def asoebi():
     return render_template('asoebi.html')
 
+@app.route('/dresscode')
+def dresscode():
+    return render_template('dresscode.html')
+
 @app.route('/rsvp', methods=['GET', 'POST'])
 def rsvp():
     data = load_data()
