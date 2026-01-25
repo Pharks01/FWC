@@ -19,13 +19,23 @@
             
             <div class="asoebi-options">
                 <!-- Bride Side -->
-                <div class="asoebi-card">
+                <div class="asoebi-card bride-side">
                     <div class="asoebi-header">
-                        <div class="asoebi-icon">
-                            <i class="fas fa-female"></i>
-                        </div>
+                        <div class="asoebi-colour-swatch" style="background-color: #636B2F;"></div>
                         <h3 class="asoebi-title">Bride's Side</h3>
                         <p class="asoebi-subtitle">Family & Friends of Sodienye</p>
+                        <p class="asoebi-colour-name">Olive Green</p>
+                    </div>
+                    
+                    <div class="asoebi-images">
+                        <div class="asoebi-image-item">
+                            <img src="{{ url_for('static', filename='images/asoebi/bride-olive.jpg') }}" alt="Olive Green Woman Traditional Attire">
+                            <span class="image-label">Women's Attire</span>
+                        </div>
+                        <div class="asoebi-image-item">
+                            <img src="{{ url_for('static', filename='images/asoebi/bride-olive-man.jpg') }}" alt="Olive Green Man Traditional Attire">
+                            <span class="image-label">Men's Attire</span>
+                        </div>
                     </div>
                     
                     <div class="asoebi-details">
@@ -67,13 +77,23 @@
                 </div>
                 
                 <!-- Groom Side -->
-                <div class="asoebi-card">
+                <div class="asoebi-card groom-side">
                     <div class="asoebi-header">
-                        <div class="asoebi-icon">
-                            <i class="fas fa-male"></i>
-                        </div>
+                        <div class="asoebi-colour-swatch" style="background-color: #b56f76;"></div>
                         <h3 class="asoebi-title">Groom's Side</h3>
                         <p class="asoebi-subtitle">Family & Friends of Ayoade</p>
+                        <p class="asoebi-colour-name">Dusty Rose</p>
+                    </div>
+                    
+                    <div class="asoebi-images">
+                        <div class="asoebi-image-item">
+                            <img src="{{ url_for('static', filename='images/asoebi/groom-dusty-rose.jpg') }}" alt="Dusty Rose Man Traditional Attire">
+                            <span class="image-label">Men's Attire</span>
+                        </div>
+                        <div class="asoebi-image-item">
+                            <img src="{{ url_for('static', filename='images/asoebi/groom-dusty-rose-woman.jpg') }}" alt="Dusty Rose Woman Traditional Attire">
+                            <span class="image-label">Women's Attire</span>
+                        </div>
                     </div>
                     
                     <div class="asoebi-details">
@@ -134,6 +154,93 @@
 </section>
 
 <style>
+.asoebi-images {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.asoebi-image-item {
+    flex: 1;
+    min-width: 140px;
+    max-width: 200px;
+    text-align: center;
+}
+
+.asoebi-image-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 8px;
+}
+
+.image-label {
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.asoebi-colour-swatch {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border: 3px solid var(--white);
+}
+
+.asoebi-image {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.asoebi-image img {
+    width: 100%;
+    max-width: 300px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.asoebi-colour-name {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.bride-side .asoebi-colour-name {
+    color: #636B2F;
+}
+
+.groom-side .asoebi-colour-name {
+    color: #b56f76;
+}
+
+.bride-side .payment-details {
+    border-left-color: #636B2F;
+}
+
+.groom-side .payment-details h4 i {
+    color: #636B2F;
+}
+
+.groom-side .payment-details {
+    border-left-color: #b56f76;
+}
+
+.groom-side .payment-details h4 i {
+    color: #b56f76;
+}
+
 .asoebi-form-embed {
     margin-top: 20px;
     border-radius: 8px;
