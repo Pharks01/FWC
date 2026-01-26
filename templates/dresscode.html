@@ -10,7 +10,7 @@
             <h2 class="section-title">Dress Code</h2>
             <div class="section-divider"></div>
             <p class="section-subtitle">Elegant attire for the White Wedding</p>
-            <div class="event-badge">April 27, 2026 • Ontario, Canada</div>
+            <div class="event-badge">April 25, 2026 • Ontario, Canada</div>
         </div>
         
         <!-- Event Clarification -->
@@ -20,7 +20,7 @@
                     <i class="fas fa-info-circle"></i>
                 </div>
                 <h4>This Dress Code is for the White Wedding</h4>
-                <p>Please note that traditional Nigerian attire is required for the Traditional Wedding (March 7, 2026). This dress code applies specifically to the White Wedding ceremony on April 27, 2026 in Ontario, Canada.</p>
+                <p>Please note that traditional Nigerian attire is required for the Traditional Wedding (March 7, 2026). This dress code applies specifically to the White Wedding ceremony on April 25, 2026 in Ontario, Canada.</p>
             </div>
         </div>
         
@@ -56,6 +56,20 @@
                 </div>
                 <h3 class="rule-title">Colour Guidelines</h3>
                 <p class="rule-text">Formal, bright colours only. Please refer to our approved colour palette below for inspiration.</p>
+            </div>
+        </div>
+        
+        <!-- Gift Registry Nudge -->
+        <div class="gift-nudge">
+            <div class="nudge-card">
+                <div class="nudge-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h4>Share Your Love with the Couple</h4>
+                <p>As you prepare for our special day, consider blessing us with a gift from our registry. Your thoughtfulness means the world to us.</p>
+                <a href="{{ url_for('registry') }}" class="nudge-btn">
+                    <i class="fas fa-heart"></i> View Gift Registry
+                </a>
             </div>
         </div>
         
@@ -221,28 +235,30 @@
 }
 
 .clarification-card {
-    background: linear-gradient(135deg, var(--royal-purple), #6B46C1);
-    color: var(--white);
+    background: linear-gradient(135deg, var(--cream), var(--white));
+    color: var(--charcoal);
     padding: 30px;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(107, 70, 193, 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid rgba(212, 175, 55, 0.15);
 }
 
 .clarification-icon {
     font-size: 2rem;
     margin-bottom: 15px;
-    opacity: 0.9;
+    color: var(--soft-gold);
 }
 
 .clarification-card h4 {
     font-family: var(--font-serif);
     font-size: 1.4rem;
     margin-bottom: 12px;
+    color: var(--charcoal);
 }
 
 .clarification-card p {
-    opacity: 0.95;
+    color: var(--warm-gray);
     line-height: 1.6;
     max-width: 700px;
     margin: 0 auto;
@@ -259,6 +275,57 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-top: 15px;
+}
+
+.gift-nudge {
+    margin-bottom: 50px;
+}
+
+.nudge-card {
+    background: linear-gradient(135deg, var(--soft-gold), #B8941F);
+    color: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
+
+.nudge-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.nudge-card h4 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+}
+
+.nudge-card p {
+    opacity: 0.95;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 20px auto;
+}
+
+.nudge-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    color: var(--soft-gold);
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.nudge-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
 .dresscode-page {

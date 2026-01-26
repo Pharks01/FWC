@@ -58,6 +58,22 @@
     </div>
 </section>
 
+<!-- Gift Registry Nudge -->
+<section class="gift-registry-nudge">
+    <div class="container">
+        <div class="nudge-content">
+            <div class="nudge-text">
+                <h3>Show Your Love</h3>
+                <p>Bless the couple with a special gift from their registry. Your generosity will make their new home even more beautiful.</p>
+            </div>
+            <a href="{{ url_for('registry') }}" class="nudge-cta">
+                <i class="fas fa-gift"></i>
+                View Gift Registry
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- Traditional Wedding Countdown - Only show before March 7, 2026 -->
 {% if countdown.days > 0 or countdown.hours > 0 or countdown.minutes > 0 or countdown.seconds > 0 %}
 <section class="countdown-section">
@@ -501,4 +517,74 @@ galleryToggles.forEach(toggle => {
     });
 });
 </script>
+
+<style>
+.gift-registry-nudge {
+    background: var(--cream);
+    padding: 50px 0;
+}
+
+.nudge-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    background: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.nudge-text h3 {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--charcoal);
+    margin-bottom: 10px;
+}
+
+.nudge-text p {
+    color: var(--warm-gray);
+    font-size: 1rem;
+    max-width: 500px;
+}
+
+.nudge-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--soft-gold);
+    color: var(--white);
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    white-space: nowrap;
+}
+
+.nudge-cta:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+@media (max-width: 768px) {
+    .nudge-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    
+    .nudge-text p {
+        max-width: none;
+    }
+    
+    .nudge-cta {
+        width: 100%;
+        justify-content: center;
+    }
+}
+</style>
 {% endblock %}
