@@ -153,7 +153,7 @@ def index():
     if now < traditional_wedding_date:
         hero_date = "March 7, 2026 • Port Harcourt, Nigeria"
     else:
-        hero_date = "April 27, 2026 • Ontario, Canada"
+        hero_date = "April 25, 2026 • Ontario, Canada"
     
     return render_template('index.html', 
                          countdown=countdown,
