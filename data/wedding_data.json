@@ -1,0 +1,23 @@
+{
+  "white_wedding": {
+    "date": "April 25, 2026",
+    "time": "11:00 AM",
+    "venue": "Test Venue",
+    "address": "123 Test Street",
+    "location": "Ontario, Canada",
+    "map_embed": "<iframe>test</iframe>"
+  },
+  "white_wedding_reception": {
+    "date": "April 25, 2026",
+    "time": "4:00 PM",
+    "venue": "Reception Venue",
+    "address": "456 Reception St",
+    "location": "Ontario, Canada",
+    "map_embed": ""
+  },
+  "rsvp_link": "https://forms.gle/test",
+  "contact": {
+    "whatsapp": "+234 123 456 7890",
+    "email": "test@example.com"
+  }
+}

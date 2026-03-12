@@ -51,6 +51,7 @@ def load_data():
             'location': 'Location TBD',
             'map_embed': ''
         },
+        'rsvp_link': '#',
         'contact': {
             'whatsapp': '+234 907 410 1930',
             'email': 'foreverwecleave@gmail.com'
@@ -311,11 +312,15 @@ def admin_update():
         'email': request.form.get('email', 'foreverwecleave@gmail.com')
     }
     
+    # Update RSVP link
+    data['rsvp_link'] = request.form.get('rsvp_link', '#')
+    
     save_data(data)
     flash('Settings updated successfully!', 'success')
     return redirect(url_for('admin'))
 
 @app.route('/admin/upload/<folder>', methods=['POST'])
+@require_admin
 def upload_media(folder):
     if 'files' not in request.files:
         return jsonify({'error': 'No files provided'}), 400
@@ -339,11 +344,13 @@ def upload_media(folder):
     return jsonify({'uploaded': uploaded})
 
 @app.route('/admin/media/<folder>')
+@require_admin
 def list_media(folder):
     files = get_media_files(folder)
     return jsonify({'files': files})
 
 @app.route('/admin/media/<folder>/<filename>', methods=['DELETE'])
+@require_admin
 def delete_media(folder, filename):
     filepath = os.path.join(UPLOAD_FOLDER, folder, filename)
     if os.path.exists(filepath):

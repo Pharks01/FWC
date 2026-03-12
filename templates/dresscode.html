@@ -1,114 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Dress Code | Sodienye & Ayoade</title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/static/css/style.css">
-    
-    <style>
-        .floating-gift-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--soft-gold);
-            color: var(--white);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            font-size: 1.2rem;
-        }
-        
-        .floating-gift-btn:hover {
-            background: #B8941F;
-            transform: scale(1.1) translateY(-3px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-        }
-        
-        .floating-gift-btn .gift-text {
-            position: absolute;
-            right: 70px;
-            background: var(--charcoal);
-            color: var(--white);
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            white-space: nowrap;
-            opacity: 0;
-            transform: translateX(10px);
-            transition: all 0.3s ease;
-        }
-        
-        .floating-gift-btn:hover .gift-text {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        @media (max-width: 768px) {
-            .floating-gift-btn {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1rem;
-            }
-            
-            .floating-gift-btn .gift-text {
-                display: none;
-            }
-        }
-    </style>
-    
-    
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="/" class="nav-logo-round" title="Forever We Cleave">
-                    S & A
-                </a>
-            </div>
-            
-            <ul class="nav-menu">
-                <li><a href="/#home">Home</a></li>
-                <li><a href="/#story">Our Story</a></li>
-                <li><a href="/#events">Events</a></li>
-                <li><a href="/#gallery">Gallery</a></li>
-                <li><a href="/dresscode">Dress Code</a></li>
-                <li><a href="/asoebi">Aso-Ebi</a></li>
-                <li><a href="/registry">Gift the Couple</a></li>
-                <li><a href="/rsvp">RSVP</a></li>
-            </ul>
-            
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+{% extends "base.html" %}
 
-    <!-- Main Content -->
-    <main>
-        
+{% block title %}Dress Code | Sodienye & Ayoade{% endblock %}
+
+{% block content %}
 <!-- Dress Code Section -->
 <section class="dresscode-page">
     <div class="container">
@@ -173,7 +67,7 @@
                 </div>
                 <h4>Share Your Love with the Couple</h4>
                 <p>As you prepare for our special day, consider blessing us with a gift from our registry. Your thoughtfulness means the world to us.</p>
-                <a href="/registry" class="nudge-btn">
+                <a href="{{ url_for('registry') }}" class="nudge-btn">
                     <i class="fas fa-heart"></i> View Gift Registry
                 </a>
             </div>
@@ -201,7 +95,7 @@
                     <div class="colour-swatch" style="background-color: #E7468A;"></div>
                     <h4 class="colour-name">Fuchsia</h4>
                     <div class="colour-image">
-                        <img src="/static/images/dresscode/fuchsia.jpg" alt="Fuchsia dress">
+                        <img src="{{ url_for('static', filename='images/dresscode/fuchsia.jpg') }}" alt="Fuchsia dress">
                     </div>
                     <p class="colour-description">Vibrant pink for bold elegance</p>
                 </div>
@@ -211,7 +105,7 @@
                     <div class="colour-swatch" style="background-color: #EC8A9A;"></div>
                     <h4 class="colour-name">Rosy Pink</h4>
                     <div class="colour-image">
-                        <img src="/static/images/dresscode/rosy-pink.jpg" alt="Rosy Pink dress">
+                        <img src="{{ url_for('static', filename='images/dresscode/rosy-pink.jpg') }}" alt="Rosy Pink dress">
                     </div>
                     <p class="colour-description">Soft blush for romantic charm</p>
                 </div>
@@ -221,7 +115,7 @@
                     <div class="colour-swatch" style="background-color: #C799E9;"></div>
                     <h4 class="colour-name">Sweet Lavender</h4>
                     <div class="colour-image">
-                        <img src="/static/images/dresscode/sweet-lavender.jpg" alt="Sweet Lavender dress">
+                        <img src="{{ url_for('static', filename='images/dresscode/sweet-lavender.jpg') }}" alt="Sweet Lavender dress">
                     </div>
                     <p class="colour-description">Gentle purple for dreamy sophistication</p>
                 </div>
@@ -231,7 +125,7 @@
                     <div class="colour-swatch" style="background-color: #D4612A;"></div>
                     <h4 class="colour-name">Burnt Orange</h4>
                     <div class="colour-image">
-                        <img src="/static/images/dresscode/burnt-orange.jpg" alt="Burnt Orange outfits">
+                        <img src="{{ url_for('static', filename='images/dresscode/burnt-orange.jpg') }}" alt="Burnt Orange outfits">
                     </div>
                     <p class="colour-description">Warm orange for confident style</p>
                 </div>
@@ -241,7 +135,7 @@
                     <div class="colour-swatch" style="background-color: #A34C2D;"></div>
                     <h4 class="colour-name">Rust</h4>
                     <div class="colour-image">
-                        <img src="/static/images/dresscode/rust.jpg" alt="Rust outfits">
+                        <img src="{{ url_for('static', filename='images/dresscode/rust.jpg') }}" alt="Rust outfits">
                     </div>
                     <p class="colour-description">Earthy brown for timeless elegance</p>
                 </div>
@@ -251,7 +145,7 @@
                     <div class="colour-swatch" style="background-color: #FBD44C;"></div>
                     <h4 class="colour-name">Butter Yellow</h4>
                     <div class="colour-image">
-                        <img src="/static/images/dresscode/butter-yellow.jpg" alt="Butter Yellow dress">
+                        <img src="{{ url_for('static', filename='images/dresscode/butter-yellow.jpg') }}" alt="Butter Yellow dress">
                     </div>
                     <p class="colour-description">Cheerful yellow for sunny elegance</p>
                 </div>
@@ -261,7 +155,7 @@
                     <div class="colour-swatch" style="background-color: #A8B989;"></div>
                     <h4 class="colour-name">Sage Green</h4>
                     <div class="colour-image">
-                        <img src="/static/images/dresscode/sage-green.jpg" alt="Sage Green outfits">
+                        <img src="{{ url_for('static', filename='images/dresscode/sage-green.jpg') }}" alt="Sage Green outfits">
                     </div>
                     <p class="colour-description">Soft green for natural sophistication</p>
                 </div>
@@ -271,7 +165,7 @@
                     <div class="colour-swatch" style="background-color: #008E94;"></div>
                     <h4 class="colour-name">Teal</h4>
                     <div class="colour-image">
-                        <img src="/static/images/dresscode/teal.jpg" alt="Teal outfits">
+                        <img src="{{ url_for('static', filename='images/dresscode/teal.jpg') }}" alt="Teal outfits">
                     </div>
                     <p class="colour-description">Deep teal for refined elegance</p>
                 </div>
@@ -281,7 +175,7 @@
                     <div class="colour-swatch" style="background-color: #6D95D9;"></div>
                     <h4 class="colour-name">Cornflower Blue</h4>
                     <div class="colour-image">
-                        <img src="/static/images/dresscode/cornflower-blue.jpg" alt="Cornflower Blue outfits">
+                        <img src="{{ url_for('static', filename='images/dresscode/cornflower-blue.jpg') }}" alt="Cornflower Blue outfits">
                     </div>
                     <p class="colour-description">Soft blue for classic charm</p>
                 </div>
@@ -291,7 +185,7 @@
                     <div class="colour-swatch" style="background-color: #4169E1;"></div>
                     <h4 class="colour-name">Royal Blue</h4>
                     <div class="colour-image">
-                        <img src="/static/images/dresscode/royal-blue.jpg" alt="Royal Blue outfits">
+                        <img src="{{ url_for('static', filename='images/dresscode/royal-blue.jpg') }}" alt="Royal Blue outfits">
                     </div>
                     <p class="colour-description">Deep blue for regal sophistication</p>
                 </div>
@@ -301,7 +195,7 @@
                     <div class="colour-swatch" style="background-color: #4B1E7A;"></div>
                     <h4 class="colour-name">Royal Purple</h4>
                     <div class="colour-image">
-                        <img src="/static/images/dresscode/royal-purple.jpg" alt="Royal Purple outfits">
+                        <img src="{{ url_for('static', filename='images/dresscode/royal-purple.jpg') }}" alt="Royal Purple outfits">
                     </div>
                     <p class="colour-description">Rich purple for majestic elegance</p>
                 </div>
@@ -311,7 +205,7 @@
                     <div class="colour-swatch" style="background-color: #7A0D28;"></div>
                     <h4 class="colour-name">Wine</h4>
                     <div class="colour-image">
-                        <img src="/static/images/dresscode/wine.jpg" alt="Wine outfits">
+                        <img src="{{ url_for('static', filename='images/dresscode/wine.jpg') }}" alt="Wine outfits">
                     </div>
                     <p class="colour-description">Deep burgundy for romantic elegance</p>
                 </div>
@@ -664,43 +558,4 @@
     }
 }
 </style>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="logo-text">S & A</span>
-                </div>
-                <p class="footer-tagline">Forever We Cleave</p>
-                <p class="footer-verse">"Can two walk together unless they agree?" — Amos 3:3</p>
-                
-                <div class="footer-contact">
-                    <a href="https://wa.me/2349074101930" class="contact-link">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>+234 907 410 1930</span>
-                    </a>
-                    <a href="mailto:foreverwecleave@gmail.com" class="contact-link">
-                        <i class="fas fa-envelope"></i>
-                        <span>foreverwecleave@gmail.com</span>
-                    </a>
-                </div>
-                
-                <p class="footer-copyright">March 7, 2026 • Port Harcourt, Nigeria</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating Gift Button -->
-    <a href="/registry" class="floating-gift-btn" title="Gift the Couple">
-        <i class="fas fa-gift"></i>
-        <span class="gift-text">Gift Us</span>
-    </a>
-
-    <!-- Scripts -->
-    <script src="/static/js/main.js"></script>
-    
-</body>
-</html>
+{% endblock %}
