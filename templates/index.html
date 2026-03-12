@@ -1,124 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sodienye & Ayoade | Forever We Cleave</title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/static/css/style.css">
-    
-    <style>
-        .floating-gift-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--soft-gold);
-            color: var(--white);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            font-size: 1.2rem;
-        }
-        
-        .floating-gift-btn:hover {
-            background: #B8941F;
-            transform: scale(1.1) translateY(-3px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-        }
-        
-        .floating-gift-btn .gift-text {
-            position: absolute;
-            right: 70px;
-            background: var(--charcoal);
-            color: var(--white);
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            white-space: nowrap;
-            opacity: 0;
-            transform: translateX(10px);
-            transition: all 0.3s ease;
-        }
-        
-        .floating-gift-btn:hover .gift-text {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        @media (max-width: 768px) {
-            .floating-gift-btn {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1rem;
-            }
-            
-            .floating-gift-btn .gift-text {
-                display: none;
-            }
-        }
-    </style>
-    
-    
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="/" class="nav-logo-round" title="Forever We Cleave">
-                    S & A
-                </a>
-            </div>
-            
-            <ul class="nav-menu">
-                <li><a href="/#home">Home</a></li>
-                <li><a href="/#story">Our Story</a></li>
-                <li><a href="/#events">Events</a></li>
-                <li><a href="/#gallery">Gallery</a></li>
-                <li><a href="/dresscode">Dress Code</a></li>
-                <li><a href="/asoebi">Aso-Ebi</a></li>
-                <li><a href="/registry">Gift the Couple</a></li>
-                <li><a href="/rsvp">RSVP</a></li>
-            </ul>
-            
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+{% extends "base.html" %}
 
-    <!-- Main Content -->
-    <main>
-        
+{% block content %}
 <!-- Hero Section -->
 <section id="home" class="hero">
     <div class="hero-slideshow">
-        
+        {% if hero_media %}
+            {% for media in hero_media %}
+                {% if media.type == 'image' %}
+                    <div class="slide">
+                        <img src="{{ media.url }}" alt="Sodienye & Ayoade" loading="lazy">
+                    </div>
+                {% else %}
+                    <div class="slide">
+                        <video autoplay muted loop playsinline>
+                            <source src="{{ media.url }}" type="video/mp4">
+                        </video>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
             <div class="slide placeholder">
                 <div class="placeholder-content">
                     <div class="logo-mark">S & A</div>
                 </div>
             </div>
-        
+        {% endif %}
     </div>
     
     <!-- Hero Info Card -->
@@ -131,18 +37,18 @@
                     <span class="groom-name">Ayoade</span>
                 </h1>
                 <div class="hero-tagline">Forever We Cleave</div>
-                <div class="hero-date">April 25, 2026 • 11:00 AM EST • Ontario, Canada</div>
+                <div class="hero-date">{{ hero_date }}</div>
                 
                 <div class="hero-buttons">
-                    <a href="/rsvp" class="btn btn-primary">
+                    <a href="{{ url_for('rsvp') }}" class="btn btn-primary">
                         <i class="fas fa-clipboard-list"></i>
                         RSVP
                     </a>
-                    <a href="/asoebi" class="btn btn-primary">
+                    <a href="{{ url_for('asoebi') }}" class="btn btn-primary">
                         <i class="fas fa-female"></i>
                         Aso-Ebi
                     </a>
-                    <a href="/registry" class="btn btn-primary">
+                    <a href="{{ url_for('registry') }}" class="btn btn-primary">
                         <i class="fas fa-gift"></i>
                         Gift the Couple
                     </a>
@@ -160,7 +66,7 @@
                 <h3>Show Your Love</h3>
                 <p>Bless the couple with a special gift from their registry. Your generosity will make their new home even more beautiful.</p>
             </div>
-            <a href="/registry" class="nudge-cta">
+            <a href="{{ url_for('registry') }}" class="nudge-cta">
                 <i class="fas fa-gift"></i>
                 View Gift Registry
             </a>
@@ -177,22 +83,22 @@
             
             <div class="countdown-timer" id="white-wedding-countdown">
                 <div class="countdown-item">
-                    <span class="countdown-number">43</span>
+                    <span class="countdown-number">{{ white_countdown.days }}</span>
                     <span class="countdown-label">Days</span>
                 </div>
                 <div class="countdown-separator">:</div>
                 <div class="countdown-item">
-                    <span class="countdown-number">19</span>
+                    <span class="countdown-number">{{ white_countdown.hours }}</span>
                     <span class="countdown-label">Hours</span>
                 </div>
                 <div class="countdown-separator">:</div>
                 <div class="countdown-item">
-                    <span class="countdown-number">42</span>
+                    <span class="countdown-number">{{ white_countdown.minutes }}</span>
                     <span class="countdown-label">Minutes</span>
                 </div>
                 <div class="countdown-separator">:</div>
                 <div class="countdown-item">
-                    <span class="countdown-number">0</span>
+                    <span class="countdown-number">{{ white_countdown.seconds }}</span>
                     <span class="countdown-label">Seconds</span>
                 </div>
             </div>
@@ -283,14 +189,28 @@
         
         <!-- Proposal Media Slideshow -->
         <div class="proposal-slideshow">
-            
+            {% if proposal_media %}
+                {% for media in proposal_media %}
+                    {% if media.type == 'image' %}
+                        <div class="proposal-slide">
+                            <img src="{{ media.url }}" alt="Proposal" loading="lazy">
+                        </div>
+                    {% else %}
+                        <div class="proposal-slide">
+                            <video autoplay muted loop playsinline>
+                                <source src="{{ media.url }}" type="video/mp4">
+                            </video>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
                 <div class="proposal-placeholder">
                     <div class="placeholder-content">
                         <i class="fas fa-heart"></i>
                         <p>Proposal photos and videos will appear here</p>
                     </div>
                 </div>
-            
+            {% endif %}
         </div>
     </div>
 </section>
@@ -365,27 +285,35 @@
                 <div class="event-details">
                     <div class="event-detail">
                         <i class="far fa-calendar"></i>
-                        <span>April 25, 2026</span>
+                        <span>{{ data.white_wedding.date }}</span>
                     </div>
                     <div class="event-detail">
                         <i class="far fa-clock"></i>
-                        <span>11:00 AM</span>
+                        <span>{{ data.white_wedding.time }}</span>
                     </div>
                     <div class="event-detail">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>Test Venue</span>
+                        <span>{{ data.white_wedding.venue }}</span>
                     </div>
                     <div class="event-detail">
                         <i class="fas fa-location-arrow"></i>
-                        <span>123 Test Street</span>
+                        <span>{{ data.white_wedding.address }}</span>
                     </div>
                 </div>
                 
-                
+                {% if data.white_wedding.map_embed %}
                 <div class="event-map">
-                    <iframe>test</iframe>
+                    {{ data.white_wedding.map_embed|safe }}
                 </div>
-                
+                {% else %}
+                <div class="event-placeholder">
+                    <div class="placeholder-content">
+                        <i class="fas fa-bell"></i>
+                        <p>Details to be announced</p>
+                        <p class="placeholder-subtitle">Check back for updates</p>
+                    </div>
+                </div>
+                {% endif %}
             </div>
             
             <!-- White Wedding Reception -->
@@ -398,23 +326,27 @@
                 <div class="event-details">
                     <div class="event-detail">
                         <i class="far fa-calendar"></i>
-                        <span>April 25, 2026</span>
+                        <span>{{ data.white_wedding_reception.date }}</span>
                     </div>
                     <div class="event-detail">
                         <i class="far fa-clock"></i>
-                        <span>4:00 PM</span>
+                        <span>{{ data.white_wedding_reception.time }}</span>
                     </div>
                     <div class="event-detail">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>Reception Venue</span>
+                        <span>{{ data.white_wedding_reception.venue }}</span>
                     </div>
                     <div class="event-detail">
                         <i class="fas fa-location-arrow"></i>
-                        <span>456 Reception St</span>
+                        <span>{{ data.white_wedding_reception.address }}</span>
                     </div>
                 </div>
                 
-                
+                {% if data.white_wedding_reception.map_embed %}
+                <div class="event-map">
+                    {{ data.white_wedding_reception.map_embed|safe }}
+                </div>
+                {% else %}
                 <div class="event-placeholder">
                     <div class="placeholder-content">
                         <i class="fas fa-bell"></i>
@@ -422,7 +354,7 @@
                         <p class="placeholder-subtitle">Check back for updates</p>
                     </div>
                 </div>
-                
+                {% endif %}
             </div>
         </div>
     </div>
@@ -449,67 +381,60 @@
         
         <!-- Slideshow View -->
         <div class="gallery-slideshow" id="gallery-slideshow">
-            
+            {% if gallery_media %}
+                {% for media in gallery_media %}
+                    {% if media.type == 'image' %}
+                        <div class="gallery-slide">
+                            <img src="{{ media.url }}" alt="Gallery" loading="lazy">
+                        </div>
+                    {% else %}
+                        <div class="gallery-slide">
+                            <video autoplay muted loop playsinline>
+                                <source src="{{ media.url }}" type="video/mp4">
+                            </video>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
                 <div class="gallery-placeholder">
                     <div class="placeholder-content">
                         <i class="fas fa-images"></i>
                         <p>Gallery photos and videos will appear here</p>
                     </div>
                 </div>
-            
+            {% endif %}
         </div>
         
         <!-- Grid View -->
         <div class="gallery-grid" id="gallery-grid" style="display: none;">
-            
+            {% if gallery_media %}
+                {% for media in gallery_media %}
+                    {% if media.type == 'image' %}
+                        <div class="gallery-item">
+                            <img src="{{ media.url }}" alt="Gallery" loading="lazy">
+                        </div>
+                    {% else %}
+                        <div class="gallery-item video-item">
+                            <video controls>
+                                <source src="{{ media.url }}" type="video/mp4">
+                            </video>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
                 <div class="gallery-placeholder">
                     <div class="placeholder-content">
                         <i class="fas fa-images"></i>
                         <p>Gallery photos and videos will appear here</p>
                     </div>
                 </div>
-            
+            {% endif %}
         </div>
     </div>
 </section>
+{% endblock %}
 
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="logo-text">S & A</span>
-                </div>
-                <p class="footer-tagline">Forever We Cleave</p>
-                <p class="footer-verse">"Can two walk together unless they agree?" — Amos 3:3</p>
-                
-                <div class="footer-contact">
-                    <a href="https://wa.me/2349074101930" class="contact-link">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>+234 907 410 1930</span>
-                    </a>
-                    <a href="mailto:foreverwecleave@gmail.com" class="contact-link">
-                        <i class="fas fa-envelope"></i>
-                        <span>foreverwecleave@gmail.com</span>
-                    </a>
-                </div>
-                
-                <p class="footer-copyright">March 7, 2026 • Port Harcourt, Nigeria</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating Gift Button -->
-    <a href="/registry" class="floating-gift-btn" title="Gift the Couple">
-        <i class="fas fa-gift"></i>
-        <span class="gift-text">Gift Us</span>
-    </a>
-
-    <!-- Scripts -->
-    <script src="/static/js/main.js"></script>
-    
+{% block extra_js %}
 <script>
 // Countdown Timer
 function updateCountdown() {
@@ -628,6 +553,4 @@ galleryToggles.forEach(toggle => {
     }
 }
 </style>
-
-</body>
-</html>
+{% endblock %}
