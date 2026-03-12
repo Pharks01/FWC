@@ -527,45 +527,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Countdown functionality for Traditional Wedding
-function updateCountdown() {
-    const weddingDate = new Date('2026-03-07T13:00:00');
+// White Wedding Countdown - April 25, 2026 at 11:00 AM EST
+function updateWhiteWeddingCountdown() {
+    // Get current date/time
     const now = new Date();
+    
+    // Wedding date: April 25, 2026 at 11:00 AM EST
+    // Create wedding date as a string and parse it
+    const weddingDate = new Date('2026-04-25T11:00:00-04:00'); // EST is UTC-4 (EDT during summer)
+    
+    // Calculate difference
     const diff = weddingDate - now;
     
     if (diff > 0) {
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        // Convert to seconds
+        const totalSeconds = Math.floor(diff / 1000);
         
-        const daysEl = document.getElementById('days');
-        const hoursEl = document.getElementById('hours');
-        const minutesEl = document.getElementById('minutes');
-        const secondsEl = document.getElementById('seconds');
-        
-        if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
-        if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
-        if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
-        if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
-        
-        // Return true to indicate countdown is still active
-        return true;
-    }
-    return false;
-}
-
-// Countdown functionality for White Wedding
-function updateWhiteWeddingCountdown() {
-    const whiteWeddingDate = new Date('2026-04-27T11:00:00');
-    const now = new Date();
-    const diff = whiteWeddingDate - now;
-    
-    if (diff > 0) {
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        // Calculate days, hours, minutes, seconds
+        const days = Math.floor(totalSeconds / 86400);
+        const remainingSeconds = totalSeconds % 86400;
+        const hours = Math.floor(remainingSeconds / 3600);
+        const remainingSeconds2 = remainingSeconds % 3600;
+        const minutes = Math.floor(remainingSeconds2 / 60);
+        const seconds = remainingSeconds2 % 60;
         
         // Get white wedding countdown elements
         const whiteCountdownEl = document.getElementById('white-wedding-countdown');
@@ -583,16 +567,8 @@ function updateWhiteWeddingCountdown() {
     }
 }
 
-// Update both countdowns every second
-setInterval(function() {
-    const traditionalActive = updateCountdown();
-    updateWhiteWeddingCountdown();
-    
-    // If traditional countdown has ended, we can stop updating it
-    // But keep updating white wedding countdown regardless
-}, 1000);
-
-updateCountdown();
+// Update countdown every second
+setInterval(updateWhiteWeddingCountdown, 1000);
 updateWhiteWeddingCountdown();
 
 // Utility function for debouncing

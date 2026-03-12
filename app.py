@@ -107,31 +107,26 @@ def get_media_files(folder):
 
 @app.route('/')
 def index():
-    # Calculate countdown for traditional wedding
-    traditional_date = datetime.datetime(2026, 3, 7, 13, 0, 0)
-    now = datetime.datetime.now()
-    time_diff = traditional_date - now
+    # Get current time in EST (Eastern Standard Time, UTC-5)
+    import pytz
+    est = pytz.timezone('US/Eastern')
+    now = datetime.datetime.now(est)
     
-    days = max(0, time_diff.days)
-    hours = max(0, time_diff.seconds // 3600)
-    minutes = max(0, (time_diff.seconds % 3600) // 60)
-    seconds = max(0, time_diff.seconds % 60)
-    
-    countdown = {
-        'days': days,
-        'hours': hours,
-        'minutes': minutes,
-        'seconds': seconds
-    }
-    
-    # Calculate countdown for white wedding
-    white_wedding_date = datetime.datetime(2026, 4, 25, 11, 0, 0)
+    # Calculate countdown for white wedding - April 25, 2026 at 11:00 AM EST
+    white_wedding_date = est.localize(datetime.datetime(2026, 4, 25, 11, 0, 0))
     white_time_diff = white_wedding_date - now
     
-    white_days = max(0, white_time_diff.days)
-    white_hours = max(0, white_time_diff.seconds // 3600)
-    white_minutes = max(0, (white_time_diff.seconds % 3600) // 60)
-    white_seconds = max(0, white_time_diff.seconds % 60)
+    # Calculate total seconds and derive days, hours, minutes, seconds
+    total_seconds = int(white_time_diff.total_seconds())
+    if total_seconds > 0:
+        white_days = total_seconds // 86400
+        remaining = total_seconds % 86400
+        white_hours = remaining // 3600
+        remaining = remaining % 3600
+        white_minutes = remaining // 60
+        white_seconds = remaining % 60
+    else:
+        white_days = white_hours = white_minutes = white_seconds = 0
     
     white_countdown = {
         'days': white_days,
@@ -148,16 +143,10 @@ def index():
     # Load dynamic data
     data = load_data()
     
-    # Determine hero date based on current date
-    # Before March 7, 2026 show Traditional Wedding, after that show White Wedding
-    traditional_wedding_date = datetime.datetime(2026, 3, 7, 13, 0, 0)
-    if now < traditional_wedding_date:
-        hero_date = "March 7, 2026 • Port Harcourt, Nigeria"
-    else:
-        hero_date = "April 25, 2026 • Ontario, Canada"
+    # Hero date shows White Wedding (Traditional Wedding has passed)
+    hero_date = "April 25, 2026 • 11:00 AM EST • Ontario, Canada"
     
     return render_template('index.html', 
-                         countdown=countdown,
                          white_countdown=white_countdown,
                          hero_media=hero_media,
                          proposal_media=proposal_media,
